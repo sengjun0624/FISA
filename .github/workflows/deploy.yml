@@ -26,10 +26,14 @@ jobs: # Workflow가 수행할 작업 목록
           node-version: '20' # Node.js의 버전은 20
 
       - name: Install dependencies # 설치된 Node 버전을 기반으로 npm 의존성 설치
-        uses: bahmutov/npm-install@v1
+        run: |
+          cd sample-app
+          npm install
 
       - name: Build project # npm run build 명령어를 통해 프로젝트 빌드
-        run: npm run build
+        run: |
+          cd sample-app
+          npm run build
 
       - name: Upload production-ready build files # Github Action에서 빌드된 리소스(html, css, js)를 사용할 수 있도록 워크플로에 사용되는 데이터들을 Artifact에 업로드
         uses: actions/upload-artifact@v4
