@@ -8,47 +8,53 @@ on: # main 브랜치에 push 되었을 때 Workflow가 동작
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
+    name: Build # Build 작업 정의
+    runs-on: ubuntu-latest # GitHub Actions에서 사용할 VM OS
 
     steps:
+      # 1. 저장소 체크아웃
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # 2. Node.js 설정
       - name: Setup Node
         uses: actions/setup-node@v4
         with: 
           node-version: '20'
 
+      # 3. 의존성 설치
       - name: Install dependencies
         run: npm install
         working-directory: FISA/sample-app
 
+      # 4. 프로젝트 빌드
       - name: Build project
         run: npm run build
         working-directory: FISA/sample-app
 
+      # 5. 빌드된 파일 업로드
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
         with:
           name: production-files
           path: FISA/sample-app/dist
 
-  deploy: # Workflow의 두 번째 Job은 deploy
-    name: Deploy
-    needs: build # 현재 job(deploy)에 대한 의존성, build job이 선행되어야 deploy job이 수행될 수 있음
+  deploy:
+    name: Deploy # Deploy 작업 정의
+    needs: build # Deploy 작업은 Build 작업 완료 후 실행
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' # deploy를 수행하기 위해 현재 브랜치가 main인지 확인
-    # github.ref란 Github Actions 내부에서 참조하기 위한 Context 변수
+    if: github.ref == 'refs/heads/main' # main 브랜치에서만 실행
 
     steps:
-      - name: Download artifact # build job에서 Artifact에 업로드한 리소스(dist/)를 다운받음
+      # 1. 빌드 파일 다운로드
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: production-files
           path: ./dist
 
-      - name: Deploy to GitHub Pages # 빌드된 리소스를 기반으로 Github Pages에 배포
+      # 2. GitHub Pages로 배포
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
