@@ -1,11 +1,14 @@
+
 ---
-name: "\bfeature_issue_template"
-about: 기능 명세 정의용 이슈 템플릿
-title: 'feature:'
-labels: feature
+name: Custom issue template
+about: Describe this issue template's purpose here.
+title: ''
+labels: ''
 assignees: ''
 
 ---
+
+
 
 ## (제목)
 ### (페이지)
