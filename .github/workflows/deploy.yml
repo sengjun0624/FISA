@@ -6,34 +6,29 @@ on: # main 브랜치에 push 되었을 때 Workflow가 동작
     branches:
       - main 
 
-jobs: # Workflow가 수행할 작업 목록
-  build: # Workflow의 첫 번째 Job은 build
-    name: Build # Job 이름
-    runs-on: ubuntu-latest # Runner의 VM OS 종류 및 버전
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
 
-    steps: # 해당 Job이 수행할 세부 단계(Step), 특정 job(check-bats-version)에서 수행될 step들을 그룹핑하기 위한 선택자
-      - name: Checkout repo # Step의 이름
-        # uses란 특정 액션을 실행시키라는 의미, 여기서는 v4 버전의 checkout 액션을 수행하도록 지정
-        uses: actions/checkout@v4 # Github Action이 해당 저장소를 관리(read/write)할 수 있도록 Checkout
-        # checkout 액션 - 저장소를 runner에 checkout해서 코드에 대해 스크립트나 기타 작업(빌드, 테스팅 등)을 실행할 수 있도록 하는 액션
-        # 워크플로가 repo의 코드를 사용하도록 하기 위해 먼저 지정해야 하는 액션
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: Setup Node # VM에 Node.js 설치
+      - name: Setup Node
         uses: actions/setup-node@v4
         with: 
-          node-version: '20' # Node.js의 버전은 20
+          node-version: '20'
 
       - name: Install dependencies
-        run: |
-          cd FISA/sample-app
-          npm install
+        run: npm install
+        working-directory: FISA/sample-app
 
       - name: Build project
-        run: |
-          cd FISA/sample-app
-          npm run build
+        run: npm run build
+        working-directory: FISA/sample-app
 
-      - name: Upload production-ready build files # Github Action에서 빌드된 리소스(html, css, js)를 사용할 수 있도록 워크플로에 사용되는 데이터들을 Artifact에 업로드
+      - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
         with:
           name: production-files
