@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>papago</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Square+Round:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="header-root">
+        <a class="logo" href="https://papago.naver.com">
+            <img width="123" height="34" src="https://papago.naver.com/97ec80a681e94540414daf2fb855ba3b.svg"
+                 alt="PAPAGO PC용">
+        </a>
+        <a class="profile">
+            <img class="profile_img" src="https://ssl.pstatic.net/static/common/myarea/myInfo.gif"
+                 onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRF8PDw5ubm+vr6+/v76enp+Pj47e3t5+fn9/f37Ozs9PT08vLy7+/v6urq9fX15OTk/f39pqwodgAAAQNJREFUeNrs11EOgyAMgOEWUAF19f6n3cMeplJHoSZbsv4H+DIWaCNsNwcGGmiggQZ+D/Q5reuasr8H9ID0CsHfALpA74JTgwPSPnRK0Ac6FrwOXOjcogIdlTkNuDDgogGRAVEBDsQ19IMzC879ILAgGNgAZhbMP3RttonxJs1Lgea/sDYcyreHXjW+oPUHVid2MWC1K+A0sqsDW7CksGmlCNZoFt9pIfjYgY8bwMMexUENQuOtqYCxfHtT7AddYodDcp0gIPEh9IBxous+nBuaTis4Nw/OSLVwloN+JEmjGJR5FyIDRpIWZeAoBkcZGMRgkIEkz0D7GjXQQAMN/GvwKcAAEGGHJh0mmaAAAAAASUVORK5CYII='"
+                 width="26" height="26" alt="내 프로필 이미지" style="display: inline-block;">
+            <span class="text">이승준</span>
+        </a>
+    </div>
+</header>
+<section class="container" style="height: 66%;">
+    <div class="left-content">
+        <div class="lang-selector">
+            <div style="height:100%; width:100%;margin-left:12px;display:flex;align-items: center;">
+                <button class="lang-button">
+                    <span>영어</span>
+                </button>
+                <label>
+                    <select style="border:none;">
+                    </select>
+                </label>
+                <div class="swap-image">
+                    <img style="height: 50%;width:27px;margin-right:20px" src="images.png" alt="화살표 버튼">
+                </div>
+            </div>
+        </div>
+        <div class="source-edit-area">
+            <textarea class="edit_box___1KtZ3" placeholder="번역할 내용을 입력하세요" id="txtSource" name="txtSource"
+                      aria-label="소스텍스트" rows="1"
+                      style="resize: none; height: 39px; width:98.9%;margin:0; border: none; display:block"></textarea>
+            <p class="text-counter" style="font-size:1.5em ;margin-right:20px; ">
+                <span>0</span>
+                &nbsp;/
+                &nbsp;
+                <span>3000</span>
+            </p>
+        </div>
+        <div class="editor-footer" style="display:flex;height:85px" >
+            <div class="option1" style="width:10%">
+
+            </div>
+            <div class="option1" style="width:10%">
+
+            </div>
+            <div class="option1" style="width:10%">
+
+            </div>
+            <div class="option1" style="width:50%">
+
+            </div>
+            <div class="option2" style="background-color:#21dc6d;flex-grow: 1;display: flex; align-items: center; justify-content: center;">
+                <span  style="color:white;height:30%;font-size:20px;font-weight:700">번역하기</span>
+            </div>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="lang-selector">
+            <div style="height:100%; width:100%;margin-left:12px;display:flex;align-items: center;">
+                <button class="lang-button"style="">
+                    <span>한국어</span>
+                </button>
+                <label>
+                    <select style="border:none;">
+                    </select>
+                </label>
+                <div class="words">
+                    <span >용어집</span>
+                </div>
+            </div>
+        </div>
+        <div class="source-edit-area">
+            <!--<textarea class="edit_box___1KtZ3" placeholder="번역할 내용을 입력하세요" id="txtSource2" name="txtSource"
+                      aria-label="소스텍스트" rows="1"
+                      style="resize: none; height: 39px; width:98.9%;margin:0; border: none; display:block"></textarea>
+            <p class="text-counter" style="font-size:1.5em ;margin-right:20px; ">
+                <span>0</span>
+                &nbsp;/
+                &nbsp;
+                <span>3000</span>
+            </p>-->
+        </div>
+        <div class="editor-footer" style="display:flex;height:85px" >
+            <div class="option1" style="width:15%">
+            </div>
+            <div class="option1" style="width:15%">
+            </div>
+            <div class="option1" style="width:15%">
+
+            </div>
+            <div class="option1" style="width:15%">
+
+            </div>
+            <div class="option2" style="flex-grow: 1;">
+            </div>
+        </div>
+    </div>
+</section>
+<div class="footer-banner">
+    <footer>
+        <img class="footer-img" src="https://papago.naver.com/e3bff6deb50f078fe094f764fac152e8.png" >
+        App Download
+    </footer>
+</div>
+</body>
+
+</html>

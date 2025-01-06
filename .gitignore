@@ -1,0 +1,95 @@
+# React 빌드 파일
+/build/
+/node_modules/
+
+# 환경 변수
+.env
+.env.local
+.env.*.local
+
+# 로그 파일
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 운영 체제 관련 파일
+.DS_Store
+Thumbs.db
+
+# IDE 및 에디터 설정 파일
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# 테스트 및 커버리지 관련 파일
+/coverage/
+*.lcov
+
+# 빌드 출력물
+/dist/
+/build/
+/out/
+
+# 특정 파일 확장자
+*.lock
+*.zip
+*.tar.gz
+*.log
+*.swp
+*.swo
+*.bak
+*.tmp
+*.temp
+
+# 패키지 매니저 파일
+package-lock.json
+yarn.lock
+
+# 특정 프레임워크/라이브러리 관련 파일
+.cache/
+.next/
+.nuxt/
+
+# Storybook 관련 파일
+.storybook/
+storybook-static/
+
+# 타임머신 또는 백업 파일
+*.~undo-tree~
+*.backup
+*.tmp
+
+# ESLint 및 Prettier 관련
+.eslintcache
+.prettiercache
+
+# Firebase 관련
+.firebase/
+firebase-debug.log
+
+# Netlify 관련
+.netlify/
+
+# AWS 관련
+.aws-sam/
+
+# Terraform 관련
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Python 프로젝트 (추가 가능)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+env/
+
+# Java 프로젝트 (추가 가능)
+*.class
+*.jar
+*.war
+*.ear
+
