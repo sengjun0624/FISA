@@ -1,0 +1,17 @@
+
+.height-default{
+    border: 2px dashed green;
+}
+.height-px{
+    height: 300px;
+    border: 2px dashed red;
+}
+html,body{
+    height:100%;
+    border:1px dashed red;
+}
+.height-pct{
+    /*%가 동작하려면 바디자체가 더 커야하는데 바디의 높이는 auto 이기때문에 더 늘릴 높이가 없음. body의 높이를 설정해주니까 됨*/
+    height: 50%;
+    border: 2px dashed navajowhite;
+}

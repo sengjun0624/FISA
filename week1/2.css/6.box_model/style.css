@@ -1,0 +1,17 @@
+*{
+    /*box-sizing: border-box;*/
+/*    content-box가 기본값. 계산할 때 */
+    /*내용물의 값으로 결정*/
+/*    border-box는 border까지 넓이를 계산함. 박스의 넒이*/
+
+}
+
+
+.box {
+    width: 300px;
+    border: 2px solid blue;
+    /*세로폭*/
+    padding: 10px;
+    /* 옆에 띄워주는거.*/
+    margin: 40px;
+}

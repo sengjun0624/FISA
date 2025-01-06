@@ -1,0 +1,16 @@
+.width-default{
+    /* 100%가 default*/
+    width: 100%;
+}
+
+span{
+}
+
+.width-px{
+    /*px는 고정되어있음.*/
+    width:300px;
+}
+.width-pct{
+    /*w50p */
+    width: 70%;
+}
