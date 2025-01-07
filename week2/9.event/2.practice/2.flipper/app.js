@@ -2,16 +2,10 @@
 const button = document.getElementById('button');
 const container = document.getElementById('container');
 const text = document.getElementById('text');
+const colorChange = () => {
+
+    const rgb = Array(3).fill().map(() => Math.floor(Math.random() * 360));
+    container.style.backgroundColor = `rgb(${rgb.join(', ')})`;
+    text.textContent = `rgb(${rgb.join(', ')})`;
+};
 button.addEventListener('click', colorChange);
-
-const number = Math.floor(Math.random() * 360);
-
-function colorChange(){
-    let R = number;
-    let G = number;
-    let B = number;
-
-
-    container.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
-    text.textContent = `rgb(${R}, ${G}, ${B})`;
-}
