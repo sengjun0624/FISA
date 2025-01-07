@@ -1,0 +1,65 @@
+<!-- React의 패러다임을 차용해서 JS만으로 카운터 기능을 구현 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="root"></div>
+<!-- 숫자값을 div 태그 내부에 그려지도록 구현 -->
+<button>increase</button>
+
+<script>
+    // --------------------------------------------
+    // 순수 JS만으로 구현한 카운터 코드
+    // 버튼 & 그릴 영역(div) 가져오는 코드
+    const root = document.getElementById('root');
+    const button = document.querySelector('button');
+
+    // let count = 0;
+    // root.innerHTML = `<p>${0}<p>`;
+
+    // button.addEventListener('click', () => {
+    //     root.innerHTML = `<p>${++count}<p>`;
+    // });
+    // --------------------------------------------
+
+
+    // --------------------------------------------
+    // React의 패러다임을 차용하여 JS만으로 구현한 카운터 코드
+
+    // 화면에 그릴 컴포넌트
+    const countComponent = {
+        count: 0,
+        updateElement() {
+            return `<p>${this.count}</p>`
+        }
+    }
+
+    //브라우저에 카운터 컴포넌트를 렌더링하는 함수
+    /**
+     *
+     * @param component - 화면에 렌더링할 컴포넌트 => countComponent
+     * @param element - 실제 화면이 그려지는 영역 => div(root)
+     */
+    function render(component, element) {
+        element.innerHTML = component;
+    }
+
+    // 초기 화면이 렌더링 됨 - 초기 값이 0인 컴포넌트
+    console.log('초기 화면이 렌더링됨');
+    // render(countComponent,root); => countComponent는 그냥 object이다.
+
+    render(countComponent.updateElement(),root);
+
+
+    button.addEventListener('click',()=>{
+        countComponent.count++;
+        render(countComponent.updateElement(),root);
+    })
+</script>
+</body>
+</html>

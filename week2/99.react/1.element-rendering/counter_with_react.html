@@ -1,0 +1,38 @@
+<!-- React의 패러다임을 활용해서 JS문법으로 카운터 기능을 구현 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+
+<div id="root">
+    <!-- 실제 화면이 그려지는 위치 -->
+</div>
+<button>increase</button>
+<script>
+    console.log(React);
+    const testComponent = React.createElement('div', null, '더미 텍스트'); //<p>0<p>
+
+    const countComponent = (props) => {
+        return React.createElement('p', null, `${props.count}`);
+    }
+
+    //초기 렌더링하는 로직
+    const rootDiv = document.getElementById('root');
+    const root = ReactDOM.createRoot(rootDiv);
+
+    root.render(React.createElement(countComponent, {count: 0}, null));
+
+    let i = 0;
+    document.querySelector('button').addEventListener('click', () => {
+        root.render(React.createElement(countComponent, {count: ++i}, null));
+    });
+</script>
+</body>
+</html>

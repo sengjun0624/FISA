@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    <!-- 실제 화면이 그려지는 위치 -->
+</div>
+
+
+<script type="text/babel">
+
+    const {useState} = React;
+    // 카운터 컴포넌트, 개발자가 만든 커스텀 컴포넌트는 대문자로 시작(일반 html 태그와 구분하기 위해)
+    const Counter = () => {
+        console.log('초기 렌더링 됨.');
+        //count는 카운트 값을 가지고 있는 상태 변수
+        //setCount 카운트 값을 업데이트 해주는 유일한 함수
+        const [count, setCount] = useState(0); //useState라는 함수가 0을 반환합니다.
+
+        const clickHandler = () => {
+            // console.log('button clicked');
+            setCount(count + 1);
+        }
+        return (
+            <div>
+                <p>{count}</p>
+                <button onClick={clickHandler}>increase</button>
+            </div>
+        )
+    };
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Counter/>); //함수의 인수로 렌더링 하고싶은 컴포너트를 전달한다.
+
+
+</script>
+</body>
+</html>
+
