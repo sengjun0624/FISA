@@ -3,7 +3,7 @@
 /node_modules/
 
 # 환경 변수
-.env
+week2/99.papago/.env
 .env.local
 .env.*.local
 

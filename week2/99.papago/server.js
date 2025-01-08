@@ -1,13 +1,17 @@
 import HTTP from 'superagent';
 import express from 'express';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const app = express()
 const port = 3000
 app.use(express.static('public'));
 app.use(express.json());
 
-const CLIENT_ID = 'lwd4vv7k1c'
-const CLIENT_SECRET = 'rQaWHJyZNNkEsiE84lWTfiB2WNxmkGPhKqkd6D2Y'
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 // lh:3-/로 접속 시 응답할 핸들러(엔드포인트)
 app.get('/', (_, response) => {
@@ -16,10 +20,9 @@ app.get('/', (_, response) => {
 
 // lh:3-/detect/로 요청 시 응답할 핸들러 - POST:/detect
 app.post('/detect', (request, response) => {
-    console.log('POST: /detect called');
-    console.log(request.body);
     // TODO: 언어 감지 요청 처리 로직
-    const DETECT_LANGUAGE_URL = 'https://naveropenapi.apigw.ntruss.com/langs/v1/dect';
+    const DETECT_LANGUAGE_URL = process.env.DETECT_LANGUAGE_URL;
+    console.log(DETECT_LANGUAGE_URL);
 
     const requestBody = {
         query: request.body.query
@@ -38,9 +41,8 @@ app.post('/detect', (request, response) => {
         });
 });
 app.post('/translate', (request, response) => {
-    console.log('POST: /translate called');
 
-    const TRANSLATE_LANGUAGE_URL = 'https://naveropenapi.apigw.ntruss.com/nmt/v1/translation';
+    const TRANSLATE_LANGUAGE_URL = process.env.TRANSLATE_LANGUAGE_URL;
     const request_body = {
         source: 'ko',
         target: 'en',
