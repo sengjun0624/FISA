@@ -1,42 +1,56 @@
 let timeout = 2000;
 let timer;
-
 const [sourceSelect, targetSelect] = document.getElementsByTagName('select');
 const [sourceTextArea, targetTextArea] = document.getElementsByTagName('textarea');
 
-// 요청을 보낼 함수 정의
-async function sendRequest() {
-    try {
-        const response = await axios.post('http://localhost:3000/detect', {
-            data: 'some data', // 서버에 보낼 데이터
-        });
-        console.log('Response:', response.data); // 서버에서 온 응답 출력
-    } catch (error) {
-        console.error('Error:', error);
+function callTranslate(request) {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = () => {
+        if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+            const result = JSON.parse(xhr.responseText);
+            console.log(result);
+            targetTextArea.value = result.message.result.translatedText;
+        }
     }
+    let data = {
+        text: request
+        , source: sourceSelect.value
+        , target: targetSelect.value
+    };
+    xhr.open('POST', '/translate');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
 }
 
 sourceTextArea.addEventListener('input', (event) => {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-        //값을 채우고
-        //api로 axios 보내고 그 값으로 처리.
-        console.log('2초 지남');
-        const data = event.target.value;
-        let request = {'query': data}
-        let lang_code;
-        axios.post('/detect', request).then(res => {
-            lang_code = res.data.langCode;
-        });
-
-        request = {'data': data}
-
-        axios.post('/translate', request).then(res => {
-            console.log(res.data.message.result.translatedText);
-            targetTextArea.value=res.data.message.result.translatedText;
-        });
+        //입력된 값으로 detect를 호출하는 함수
+        detectLanguageAndTranslate(event.target.value);
     }, timeout);
 })
+
+
+/**
+ *
+ * @param text input에 입력된 값
+ */
+function detectLanguageAndTranslate(text) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.onload = () => {
+        if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+            const langCode = JSON.parse(xhr.responseText).langCode;
+            sourceSelect.value = (langCode === 'ko' || langCode === 'en' || langCode === 'ja') ? langCode : 'auto';
+            callTranslate(text);
+        }
+    }
+
+    let request = {'query': text};
+    xhr.open('POST', '/detect');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(request));
+}
 
 
 // source String, target string, mp

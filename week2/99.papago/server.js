@@ -1,7 +1,7 @@
 import HTTP from 'superagent';
-import express from 'express';
-
+import express, {json} from 'express';
 import dotenv from 'dotenv';
+
 
 dotenv.config();
 
@@ -21,20 +21,14 @@ app.get('/', (_, response) => {
 // lh:3-/detect/로 요청 시 응답할 핸들러 - POST:/detect
 app.post('/detect', (request, response) => {
     // TODO: 언어 감지 요청 처리 로직
-    const DETECT_LANGUAGE_URL = process.env.DETECT_LANGUAGE_URL;
-    console.log(DETECT_LANGUAGE_URL);
-
-    const requestBody = {
-        query: request.body.query
-    }
-
-    HTTP.post(DETECT_LANGUAGE_URL) // 보낼 주소
-        .send(requestBody) // 보낼 데이터
+    HTTP.post( process.env.DETECT_LANGUAGE_URL) // 보낼 주소
+        .send({ query: request.body.query}) // 보낼 데이터
         .set('x-ncp-apigw-api-key-id', CLIENT_ID) // 요청 헤더값 세팅
         .set('x-ncp-apigw-api-key', CLIENT_SECRET)
         .end((error, result) => { // 응답받은 결과값 취득
             if (result.statusCode === 200) {
-                 response.send(result.body);
+                //TODO 값을 select에 다시 넣기
+                response.send(result.body);
             } else {
                 console.error(error);
             }
@@ -43,10 +37,12 @@ app.post('/detect', (request, response) => {
 app.post('/translate', (request, response) => {
 
     const TRANSLATE_LANGUAGE_URL = process.env.TRANSLATE_LANGUAGE_URL;
+
     const request_body = {
-        source: 'ko',
-        target: 'en',
-        text: request.body.data
+        //TODO 해당 값도 select에서 가져오기
+        source: request.body.source,
+        target: request.body.target,
+        text: request.body.text
     }
 
     HTTP.post(TRANSLATE_LANGUAGE_URL) // 보낼 주소
