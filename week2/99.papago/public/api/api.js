@@ -1,5 +1,6 @@
 // 언어 감지
-const detectLanguage = (text) => {
+export const detectLanguage = async (text) => {
+    let sourceLanguage;
     const url = '/detect';
     const body = {query: text}
     const options = {
@@ -7,17 +8,30 @@ const detectLanguage = (text) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: body
+        body: JSON.stringify(body)
     }
     //fetch API
-    fetch(url, options)
+    await fetch(url, options)
         .then(response => response.json())
-        .then(data=>console.log(data))
+        .then(data => sourceLanguage = data.langCode);
+    return sourceLanguage;
 }
-const translateLanguage = () => {
-    const url = '/translage';
+export const translateLanguage = async (source, target, text) => {
+    const url = '/translate';
+    const body = {source, target, text};
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    }
+    let ret;
+    await fetch(url, options)
+        .then(response => response.json())
+        .then(data => ret = data)
 
-    fetch(url,)
+    return ret;
 }
 
 // 번역
