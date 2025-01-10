@@ -1,8 +1,9 @@
 import express, { json } from 'express';
 import HTTP from 'superagent';
+import dotenv from 'dotenv';
 
-const CLIENT_ID = 'lwd4vv7k1c'
-const CLIENT_SECRET = 'rQaWHJyZNNkEsiE84lWTfiB2WNxmkGPhKqkd6D2Y'
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET =  process.env.CLIENT_SECRET;
 
 const app = express();
 
