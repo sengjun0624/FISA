@@ -1,22 +1,29 @@
-import {detectLanguage, translateLanguage} from "./api/api.js";
+import { detectLanguage, translateLanguage } from "./api/api.js";
+import { changeLanguage } from "./util.js";
 
 const [sourceSelect, targetSelect] = document.getElementsByTagName('select');
 const [sourceTextArea, targetTextArea] = document.getElementsByTagName('textarea');
 
-let targetLanguage = 'en';
-targetSelect.addEventListener('change', (event) => targetLanguage = event.target.value);
-// source String, target string, mp
+let targetLang = 'en';
+targetSelect.addEventListener('change', (event) => targetLang = event.target.value);
 
 let timer;
-
 sourceTextArea.addEventListener('input', (event) => {
     if (timer) clearTimeout(timer);
+
     timer = setTimeout(async () => {
         const text = event.target.value;
-        const detectedResult = await detectLanguage(text);
-        const data= await translateLanguage(detectedResult, targetLanguage, event.target.value);
-        sourceSelect.value = data.message.result.srcLangType;
-        targetSelect.value = data.message.result.tarLangType;
-        targetTextArea.value = data.message.result.translatedText;
-    }, 2000)
-})
+        console.log(text);
+        const detectedResult = await detectLanguage('/detect', text);
+
+        targetLang = changeLanguage(detectedResult, targetLang);
+
+        const { detectedLanguage, targetLanguage, translatedText } = await translateLanguage('/translate', detectedResult, targetLang, text);
+
+        // 결과값 바인딩
+        sourceSelect.value = detectedLanguage;
+        targetSelect.value = targetLanguage;
+        targetTextArea.value = translatedText;
+    }, 1500);
+
+});

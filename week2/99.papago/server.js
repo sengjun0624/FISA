@@ -1,61 +1,71 @@
+import express, { json } from 'express';
 import HTTP from 'superagent';
-import express, {json} from 'express';
-import dotenv from 'dotenv';
 
+const CLIENT_ID = 'lwd4vv7k1c'
+const CLIENT_SECRET = 'rQaWHJyZNNkEsiE84lWTfiB2WNxmkGPhKqkd6D2Y'
 
-dotenv.config();
+const app = express();
 
-const app = express()
-const port = 3000
-app.use(express.static('public'));
-app.use(express.json());
+app.use(express.static('public'))
+app.use(json())
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const clientId = CLIENT_ID;
+const clientSecret = CLIENT_SECRET;
 
-// lh:3-/로 접속 시 응답할 핸들러(엔드포인트)
 app.get('/', (_, response) => {
     response.sendFile('index.html');
-})
+});
 
-// lh:3-/detect/로 요청 시 응답할 핸들러 - POST:/detect
+// 언어 감지 처리 API
 app.post('/detect', (request, response) => {
-    HTTP.post( process.env.DETECT_LANGUAGE_URL) // 보낼 주소
-        .send({ query: request.body.query}) // 보낼 데이터
-        .set('x-ncp-apigw-api-key-id', CLIENT_ID) // 요청 헤더값 세팅
-        .set('x-ncp-apigw-api-key', CLIENT_SECRET)
-        .end((error, result) => { // 응답받은 결과값 취득
+    const url = 'https://naveropenapi.apigw.ntruss.com/langs/v1/dect';
+
+    HTTP.post(url)
+        .send(request.body)
+        .set('Content-Type', 'application/json')
+        .set('X-NCP-APIGW-API-KEY-ID', clientId)
+        .set('X-NCP-APIGW-API-KEY', clientSecret)
+        .end((error, result) => {
             if (result.statusCode === 200) {
-                console.log(result.body);
                 response.send(result.body);
             } else {
                 console.error(error);
             }
         });
 });
+
+// 번역 요청 처리 API
 app.post('/translate', (request, response) => {
 
-    const TRANSLATE_LANGUAGE_URL = process.env.TRANSLATE_LANGUAGE_URL;
+    const url = 'https://naveropenapi.apigw.ntruss.com/nmt/v1/translation';
 
-    const request_body = {
-        source: request.body.source,
-        target: request.body.target,
-        text: request.body.text
-    }
-
-    HTTP.post(TRANSLATE_LANGUAGE_URL) // 보낼 주소
-        .send(request_body) // 보낼 데이터
-        .set('x-ncp-apigw-api-key-id', CLIENT_ID) // 요청 헤더값 세팅
-        .set('x-ncp-apigw-api-key', CLIENT_SECRET)
-        .end((error, result) => { // 응답받은 결과값 취득
+    HTTP.post(url)
+        .send(request.body)
+        .set('Content-Type', 'application/json')
+        .set('X-NCP-APIGW-API-KEY-ID', clientId)
+        .set('X-NCP-APIGW-API-KEY', clientSecret)
+        .end((error, result) => {
             if (result.statusCode === 200) {
-                response.send(result.body);
-                console.log(result.body);
+                // 파파고 서버로부터 응답받은 결과 데이터
+                const responseDataFromPapago = result.body;
+
+                // 화면 출력에 필요한 값만 추출
+                const { srcLangType: detectedLanguage, tarLangType: targetLanguage, translatedText } = responseDataFromPapago.message.result;
+
+                const responseData = {
+                    detectedLanguage,
+                    targetLanguage,
+                    translatedText
+                }
+
+                response.send(responseData);
             } else {
                 console.error(error);
             }
         });
 });
+
+const port = 3000;
 app.listen(port,
     () => console.log(`http://127.0.0.1:${port}/ 서버 프로세스가 3000번 포트에서 실행 중입니다.`)
 );

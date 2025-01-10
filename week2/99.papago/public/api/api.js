@@ -1,37 +1,33 @@
-// 언어 감지
-export const detectLanguage = async (text) => {
+import { optionsFrom } from '../util.js';
+
+// 언어 감지 요청 기능을 수행하는 함수
+export const detectLanguage = async (url, text) => {
     let sourceLanguage;
-    const url = '/detect';
-    const body = {query: text}
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    }
-    //fetch API
-    await fetch(url, options)
+
+    const body = { query: text };
+
+    await fetch(url, optionsFrom('POST', body))
         .then(response => response.json())
-        .then(data => sourceLanguage = data.langCode);
+        .then(data => {
+            sourceLanguage = data.langCode;
+        });
+
     return sourceLanguage;
 }
-export const translateLanguage = async (source, target, text) => {
-    const url = '/translate';
-    const body = {source, target, text};
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
+
+// 언어 번역 요청 기능을 수행하는 함수
+export const translateLanguage = async (url, detectedLanguage, targetLanguage, text) => {
+
+    const body = {
+        source: detectedLanguage,
+        target: targetLanguage,
+        text, // text: text와 같음
     }
-    let ret;
-    await fetch(url, options)
+
+    const result = await fetch(url, optionsFrom('POST', body))
         .then(response => response.json())
-        .then(data => ret = data)
+        .then(data => data)
+        .catch(error => console.error(error));
 
-    return ret;
+    return result;
 }
-
-// 번역
