@@ -1,3 +1,7 @@
+/**
+* @mission a,b,c  순서로 호출되고 완료되어야함.
+ * 기존 코드는 a,b,c가 순서대로 호출되는 꼴이였음.
+* */
 function a(callback) {
     setTimeout(() => {
         console.log('a() called')
