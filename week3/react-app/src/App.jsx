@@ -2,40 +2,43 @@ import DefaultLayout from './layouts/DefaultLayout'
 import TodoBody from "./components/todos/TodoBody.jsx";
 import TodoHeader from "./components/todos/TodoHeader.jsx";
 import Header from "./components/header/Header.jsx";
+import React, {useState} from "react";
 
-
-const todos = [
-    {
-        id: 1,
-        title: 'React 공부',
-        summary: 'React를 공부한다.',
-        category: 'TODO',
-    },
-    {
-        id: 2,
-        title: '점심 먹기',
-        summary: '점심을 먹는다.',
-        category: 'PROGRESS',
-    },
-    {
-        id: 3,
-        title: '커피 마시기',
-        summary: '커피를 마신다.',
-        category: 'DONE',
-    }
-]
 
 function App() {
+    /* 할 일 데이터를 하나의 상태로 관리 */
+    const [todos, setTodos] = useState([]);
+    //모달을 열고, 모달 값을 내려주는 함수.
 
+    const deleteHandler = (id) => {
+        setTodos((prevTodos) => prevTodos.filter((todos) => todos.id !== id));
+    }
+    const addHandler = (title, summary, category) => {
+        const todo =
+            {
+                id: self.crypto.randomUUID(),
+                title: title,
+                summary: summary,
+                category: category,
+            }
+        const newTodos = [...todos, todo];
+        setTodos(newTodos);
+    }
+    const updateHandler = (id, title, summary, category) => {
+        console.log('abcd called');
+        const newTodo={id,title,summary,category};
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => (todo.id === id ? newTodo : todo))
+        );
+    }
     return (
         <>
             <DefaultLayout>
                 <Header/>
                 <section className='max-w-xl m-4 mx-auto'>
-                    <TodoHeader/>
-                    <TodoBody todos={todos}/>
+                    <TodoHeader addHandler={addHandler}/>
+                    <TodoBody updateHandler={updateHandler} todos={todos} onDelete={deleteHandler}/>
                 </section>
-
             </DefaultLayout>
         </>
     )
