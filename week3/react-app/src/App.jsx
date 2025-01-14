@@ -10,8 +10,6 @@ function App() {
             <DefaultLayout>
                 <Header/>
                 <section className='max-w-xl m-4 mx-auto'>
-                    {/* Todo Header - 할일 추가, 필터링 UI*/}
-                    {/* Todo Body -할 일 목록 UI*/}
                     <TodoHeader/>
                     <TodoBody/>
                 </section>
