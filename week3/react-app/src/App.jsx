@@ -8,6 +8,7 @@ import React, {useState} from "react";
 function App() {
     /* 할 일 데이터를 하나의 상태로 관리 */
     const [todos, setTodos] = useState([]);
+    const [categories, setCategories] = useState(' ');
     //모달을 열고, 모달 값을 내려주는 함수.
 
     const deleteHandler = (id) => {
@@ -25,7 +26,6 @@ function App() {
         setTodos(newTodos);
     }
     const updateHandler = (id, title, summary, category) => {
-        console.log('abcd called');
         const newTodo={id,title,summary,category};
         setTodos((prevTodos) =>
             prevTodos.map((todo) => (todo.id === id ? newTodo : todo))
@@ -36,8 +36,8 @@ function App() {
             <DefaultLayout>
                 <Header/>
                 <section className='max-w-xl m-4 mx-auto'>
-                    <TodoHeader addHandler={addHandler}/>
-                    <TodoBody updateHandler={updateHandler} todos={todos} onDelete={deleteHandler}/>
+                    <TodoHeader addHandler={addHandler} setCategories={setCategories}/>
+                    <TodoBody categories={categories} updateHandler={updateHandler} todos={todos} onDelete={deleteHandler}/>
                 </section>
             </DefaultLayout>
         </>

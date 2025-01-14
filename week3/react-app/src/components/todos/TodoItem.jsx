@@ -24,7 +24,7 @@ const TodoItem = ({updateHandler,todo, onDelete}) => {
                 </div>
             </div>
             <div className="flex items-center gap-1">
-                <IconButton icon={'✏️'} open={() => open(true)}/>
+                <IconButton icon={'✏️'} clickHandler={() => open(true)}/>
                 <IconButton textColor='text-red-300' icon={'🗑'} clickHandler={deleteById}/>
             </div>
             {openModal && createPortal(

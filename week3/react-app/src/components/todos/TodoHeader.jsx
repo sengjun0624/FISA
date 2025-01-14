@@ -4,7 +4,7 @@ import {createPortal} from "react-dom";
 import Modal from "../ui/Modal.jsx";
 import TodoForm from "./TodoForm.jsx";
 
-const TodoHeader = ({addHandler}) => {
+const TodoHeader = ({addHandler,setCategories}) => {
     const [openModal, open] = React.useState(false);
     const options = {title: '할 일 등록', buttonText: 'Add'};
     return (
@@ -18,7 +18,7 @@ const TodoHeader = ({addHandler}) => {
                     <TodoForm onClose={() => open(false)}  clickHandler={addHandler} options={options}/>
                 </Modal>,
                 document.body)}
-            <TodoFilter/>
+            <TodoFilter setCategories={setCategories}/>
         </div>
     )
 }

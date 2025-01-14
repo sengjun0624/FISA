@@ -3,12 +3,15 @@ import TodoItem from "./TodoItem.jsx";
 
 
 
-const TodoBody = ({updateHandler,todos,onDelete}) => {
-    console.log(todos);
+const TodoBody = ({categories,updateHandler,todos,onDelete}) => {
+    const filteredTodos = (categories === 'all'||categories===' ')
+        ? todos
+        : todos.filter((todo) => todo.category === categories);
+
     return (
         <ul
             className='px-0 my-8'>
-            {todos.map((todo) => <TodoItem updateHandler={updateHandler} todo={todo} onDelete={onDelete} key={todo.id}/>)}
+            {filteredTodos.map((todo) => <TodoItem updateHandler={updateHandler} todo={todo} onDelete={onDelete} key={todo.id}/>)}
         </ul>
     )
 }
