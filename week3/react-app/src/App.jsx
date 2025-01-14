@@ -1,15 +1,18 @@
-
 import './App.css'
+import Counter from  './components/Counter.jsx'
+import DefaultLayout from "./layouts/defaultLayout.jsx";
 
 function App() {
 
-  return (
-      <>
-          <h1 className="text-3xl font-bold underline">
-              Hello world!
-          </h1>
-      </>
-  )
+    return (
+        <>
+
+            <DefaultLayout>
+                <Counter />
+            </DefaultLayout>
+        </>
+    )
 }
+
 
 export default App
