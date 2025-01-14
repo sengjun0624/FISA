@@ -1,6 +1,7 @@
 import React from 'react'
 import TodoItem from "./TodoItem.jsx";
 
+/*
 const todos = [
     {
         id: 1,
@@ -21,8 +22,9 @@ const todos = [
         category: 'DONE',
     }
 ]
+*/
 
-const TodoBody = () => {
+const TodoBody = ({todos}) => {
     return (
         <ul
             className='px-0 my-8'>
