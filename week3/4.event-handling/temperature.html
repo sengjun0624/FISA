@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        // 섭씨를 화씨로 변환해주는 함수 toCelsius(섭씨 온도값)
+        function toFahrenheit(celsius) {
+            return (celsius * 9 / 5) + 32;
+        }
+
+        // 화씨를 섭씨로 변환해주는 함수 toCelsius(화씨 온도값)
+        function toCelsius(fahrenheit) {
+            return (fahrenheit - 32) * 5 / 9;
+        }
+
+        const Temperature = () => {
+
+            return(
+            <div>
+            <h2>섭씨 온도를 입력하세요 :</h2>
+            <p className = 'OC'></p>
+            <h2>화씨 온도를 입력하세요 :</h2>
+            <p className = 'FC'></p>
+            </div>
+
+            
+
+        )}
+
+
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Temperature />);
+
+
+    </script>
+
+
+</body>
+
+</html>

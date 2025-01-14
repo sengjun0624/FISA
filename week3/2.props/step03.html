@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const Container = () => {
+            return (
+
+                <div className = 'text-center'>
+                    <h1>상품 목록</h1>
+                    <div className = 'flex justify-center'>
+                        <Product url={'https://picsum.photos/id/30/200/200'} name={'컵'} price={'5,000'}/>
+                        <Product url={'https://picsum.photos/id/39/200/200'} name={'LP'} price={'3,000'}/>
+                        <Product url={'https://picsum.photos/id/211/200/200'} name={'배'} price={'2,500'}/>
+                        <Product url={'https://picsum.photos/id/250/200/200'} name={'카메라'} price={'500'}/>
+                    </div>
+                </div>
+            )
+        }
+
+        // Product(Item), 자신이 상태를 가지지 않아야 함
+        const Product = props => {
+            console.log(props);
+
+            return (
+                <div>
+                    <img src={props.url} alt="" />
+                    <h2>{props.name}</h2>
+                    <p>{props.price}원</p>
+                </div>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Container />);
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- JSX를 사용하기 위해 필요한 의존성(Babel) 추가 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        
+        // props: 컴포넌트(함수)의 파라미터, 이름은 자유
+        const Component = props => {
+            console.log(props);
+            
+            return (
+                <div>
+                    <h1>It's a {props.value}</h1>
+                </div>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        // props를 통해 값을 전달할 수 있음, 
+        // props는 내가 만든 컴포넌트의 attribute 형태로 전달
+        root.render(<Component value="props값" />);
+    </script>
+</body>
+</html>
