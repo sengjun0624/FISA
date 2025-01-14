@@ -14,7 +14,6 @@ JS는 함수 정의 방식이 다양함
 function add(a, b) {
     console.log(a + b);
 }
-
 add(3, 5);
 add(5, '3');
 
