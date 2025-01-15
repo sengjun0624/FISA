@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    const {useReducer} = React;
+    const reducer = (state, action) => { //reducer의 반환값이 새로운 state값이됨.
+        switch (action.type) {
+            case 'INCREASE':
+                return state + action.data;
+        }
+
+    };
+    const Counter = () => {
+        //count 상태값
+        //dispatch - 상태를 변경하는 트리거 함수
+        const [count, dispatch] = useReducer(reducer, 0);
+
+        //dispatch() 호출 시, useReducer()의 첫 번째 인수로 전달한 reducer가 호출됨.
+        const increase = () => {
+            dispatch({type: 'INCREASE', count: count});
+        };
+        return (
+            <>
+                <p>카운트: {count}</p>
+                <button onClick={() => {increase();
+                }}>증가
+                </button>
+                <button onClick={() => {
+                }}>감소
+                </button>
+                <button onClick={() => {
+                }}>초기화
+                </button>
+            </>
+        )
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Counter/>);
+</script>
+</body>
+</html>
