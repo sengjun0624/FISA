@@ -4,16 +4,14 @@ import IconButton from '../ui/IconButton';
 import {createPortal} from "react-dom";
 import Modal from "../ui/Modal.jsx";
 import TodoForm from "./TodoForm.jsx";
+import {useTodosDispatch} from "../context/TodoContext.jsx";
 
-const TodoItem = ({updateHandler,todo, onDelete}) => {
-    const deleteById = () => {
-        onDelete(todo.id);
-    }
-    const updateById = (title,summary,category) => {
-        updateHandler(todo.id,title,summary,category);
-    }
+const TodoItem = ({todo}) => {
+
+    const dispatch = useTodosDispatch();
     const [openModal, open] = React.useState(false);
     const options = {title: '할 일 수정', buttonText: 'Update'};
+
     return (
         <li className="flex gap-4 justify-between my-4 py-4 px-4 border-[1px] bg-gray-700 rounded-md shadow-xl">
             <div>
@@ -24,12 +22,17 @@ const TodoItem = ({updateHandler,todo, onDelete}) => {
                 </div>
             </div>
             <div className="flex items-center gap-1">
-                <IconButton icon={'✏️'} clickHandler={() => open(true)}/>
-                <IconButton textColor='text-red-300' icon={'🗑'} clickHandler={deleteById}/>
+                <IconButton icon={'✏️'} onClick={() => open(true)}/>
+                <IconButton textColor='text-red-300' icon={'🗑'} onClick={() => {
+                    dispatch({type: 'DELETE', id: todo.id});
+                }}/>
             </div>
             {openModal && createPortal(
                 <Modal>
-                    <TodoForm onClose={() => open(false)} clickHandler={updateById} options={options}/>
+                    <TodoForm onClose={() => open(false)} options={options} callback={(title, summary, category) => {
+                        console.log('button called');
+                        dispatch({type: 'UPDATE', updateTodo: {id: todo.id, title, summary, category}})
+                    }}/>
                 </Modal>,
                 document.body)}
         </li>

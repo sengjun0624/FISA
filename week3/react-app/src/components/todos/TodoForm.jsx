@@ -1,19 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {TODO_CATEGORY_ICON} from '@/constants/icon'
 
-const TodoForm = ({clickHandler, onClose, options}) => {
+const TodoForm = ({onClose, options,callback}) => {
     // 각각의 입력폼을 개별 상태로 관리
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
     const [category, setCategory] = useState('TODO');
-    const eventListener = () => {
-        if (title.length <= 0 || summary.length <= 4) {
-            alert('제목은 한 글자이상 summary는 5글자이상 입력하세요');
-            return;
-        }
-            clickHandler(title, summary, category);
-        onClose();
-    }
+
+    const clickHandler = ()=> {callback(title,summary,category); onClose();};
+    console.log(clickHandler);
     return (
         <>
             <h3 className="text-3xl text-red-200">{options.title}</h3>
@@ -43,10 +38,9 @@ const TodoForm = ({clickHandler, onClose, options}) => {
                 </div>
 
                 <div className='flex justify-end gap-4'>
-                    {/* TodoHeader로부터 props로 전달받은 onClose라는 콜백함수를 onClick 이벤트에 등록 */}
                     <button className='text-xl text-white' type='button' onClick={onClose}>Cancel</button>
                     <button className='px-6 py-3 text-xl text-red-200' type='button'
-                            onClick={eventListener}>{options.buttonText}
+                            onClick={clickHandler}>{options.buttonText}
                     </button>
                 </div>
             </form>

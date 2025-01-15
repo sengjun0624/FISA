@@ -1,17 +1,16 @@
 import React from 'react'
-import TodoItem from "./TodoItem.jsx";
+import TodoItem from './TodoItem'
+import {useTodos} from "../context/TodoContext.jsx";
 
+const TodoBody = () => {
 
-
-const TodoBody = ({categories,updateHandler,todos,onDelete}) => {
-    const filteredTodos = (categories === 'all'||categories===' ')
-        ? todos
-        : todos.filter((todo) => todo.category === categories);
+    const todos = useTodos();
+    const filterTodos = (todos, selectedCategory) => selectedCategory === 'ALL' ? todos : todos.filter(todo => todo.category === selectedCategory);
+    const filteredTodos = filterTodos(todos.data, todos.category);
 
     return (
-        <ul
-            className='px-0 my-8'>
-            {filteredTodos.map((todo) => <TodoItem updateHandler={updateHandler} todo={todo} onDelete={onDelete} key={todo.id}/>)}
+        <ul className='px-0 my-8'>
+            {filteredTodos.map((todo,index) => <TodoItem todo={todo} key={index}/>)}
         </ul>
     )
 }
