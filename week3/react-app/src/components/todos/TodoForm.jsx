@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import {TODO_CATEGORY_ICON} from '@/constants/icon'
 
-const TodoForm = ({clickHandler,onClose,options}) => {
+const TodoForm = ({clickHandler, onClose, options}) => {
     // 각각의 입력폼을 개별 상태로 관리
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
     const [category, setCategory] = useState('TODO');
     const eventListener = () => {
-        clickHandler(title, summary, category);
+        if (title.length <= 0 || summary.length <= 4) {
+            alert('제목은 한 글자이상 summary는 5글자이상 입력하세요');
+            return;
+        }
+            clickHandler(title, summary, category);
         onClose();
     }
     return (

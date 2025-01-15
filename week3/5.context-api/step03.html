@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    const { useState, createContext, useContext } = React;
+
+
+    const MyContext = createContext();
+    console.log(MyContext);
+
+    const App = () => {
+        const [data, setData] = useState('Hello from Parent');
+
+        return (
+            // setData 함수도 Context를 통해 전달받아서 활용할 수 있도록 작성
+            // setData()도 context에서 제공할 수 있게 Provider의 value에 추가
+            <div>
+                <h1>{data}</h1>
+                <MyContext.Provider value={{data, setData}}>
+                    <A />
+                </MyContext.Provider>
+            </div>
+        );
+    };
+
+    const A = () => {
+        return (
+            <div>
+                <B/>
+            </div>
+        );
+    };
+
+    const B = () => {
+        return (
+            <div>
+                <C/>
+            </div>
+        );
+    };
+
+    const C = () => {
+        return (
+            <div>
+                <D/>
+            </div>
+        );
+    };
+
+    const D = () => {
+        // #3. 생성한 컨텍스트를 통해 데이터 받아오기
+        // useContext(사용할 컨텍스트 이름);
+        // console.log(useContext(MyContext));
+        const { data:result, setData } = useContext(MyContext);
+        console.log(result); // data 프로퍼티의 이름을 result로 변경하고 싶을 경우
+
+
+
+        const clickHandler = () => setData('Data changed');
+
+        return (
+            <div>
+                <h5>{result}</h5>
+                <button onClick={clickHandler}>Change Data</button>
+            </div>
+        );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+</script>
+</body>
+
+</html>
