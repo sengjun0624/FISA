@@ -1,4 +1,4 @@
-import LineChart from "@/app/dashboard/line-chart";
+import LineChart from "@/app/components/dashboard/line-chart";
 
 export default function Dashboard() {
     return (
