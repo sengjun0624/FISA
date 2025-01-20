@@ -1,0 +1,7 @@
+#1. 메인 페이지 렌더링
+    app/page.js를 통한 메인 페이지 렌더링 방식 이해
+#2. 기본 라우팅
+    localhost:3000/about
+    localhost:3000/profile 경로로 접근하고 싶을 경우,
+
+
