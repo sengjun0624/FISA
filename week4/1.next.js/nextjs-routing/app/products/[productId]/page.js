@@ -1,6 +1,6 @@
-export default function ProductDetail ({params}){
-
+export default async  function  ProductDetail ({params}){
+    const {productId} = params;
     return (
-        <div>상품 디테일 페이지</div>
+        <div>상품 {productId} 디테일 페이지</div>
     );
 }
