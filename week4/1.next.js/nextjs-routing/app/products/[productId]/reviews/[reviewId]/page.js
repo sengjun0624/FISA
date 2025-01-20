@@ -1,6 +1,14 @@
+import {notFound} from "next/navigation";
+import {internalServerError} from "next/dist/client/components/react-dev-overlay/server/shared";
+
 export default async function ProductDetail(props) {
-    const params = await props.params;
-    return (
-        <div>상품 {params.productId}번  상세 리뷰 {params.reviewId}페이지</div>
-    );
+    const {reviewId, productId} = await props.params;
+    if (reviewId > 10) {
+        notFound(); //프로그램 레벨에서 Programmatically
+    } else {
+        return (
+            <div>상품 {productId}번 상세 리뷰 {reviewId}페이지</div>
+        );
+    }
+
 }
