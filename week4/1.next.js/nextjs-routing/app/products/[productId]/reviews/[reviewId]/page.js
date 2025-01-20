@@ -1,5 +1,4 @@
 import {notFound} from "next/navigation";
-import {internalServerError} from "next/dist/client/components/react-dev-overlay/server/shared";
 
 export default async function ProductDetail(props) {
     const {reviewId, productId} = await props.params;
