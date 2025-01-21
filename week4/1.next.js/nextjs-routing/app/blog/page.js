@@ -1,11 +1,8 @@
-import React from 'react';
-
-const Blog = () => {
+export default async function PageName() {
+    await new Promise(resolve => setTimeout(resolve, 2000));
     return (
         <div>
-            Blog  Main Page
+            blog Main
         </div>
-    );
-};
-
-export default Blog;
+   );
+}
