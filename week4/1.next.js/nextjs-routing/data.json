@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "상품 1",
+      "price": 800,
+      "description": "상품 설명 1"
+    },
+    {
+      "id": 2,
+      "title": "상품 2",
+      "price": 1000,
+      "description": "상품 설명 2"
+    },
+    {
+      "id": 3,
+      "title": "상품 3",
+      "price": 2500,
+      "description": "상품 설명 3"
+    }
+  ]
+}
