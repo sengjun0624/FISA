@@ -1,8 +1,17 @@
-import {cache} from "react";
+"use client";
+import {useEffect, useState} from "react";
 
-export default async function Page() {
-    const response = await fetch('http://localhost:3001/products', {next: {revalidate: 3}});
-    const products = await response.json();
+export default function ClientPage() {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        async function fetchProducts() {
+            const response = await fetch('http://localhost:3001/products', {next: {revalidate: 3000}});
+            setProducts(await response.json());
+        }
+        fetchProducts();
+    }, []);
+
     return (
         <ul className="space-y-4 p-4">
             {products.map((product) => (
