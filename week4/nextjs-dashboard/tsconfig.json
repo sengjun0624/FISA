@@ -20,7 +20,9 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      paths: {
+        "@/app/*": ["app/*"]
+      }
     }
   },
   "include": [
