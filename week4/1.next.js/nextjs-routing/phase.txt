@@ -1,5 +1,5 @@
 #1. 메인 페이지 렌더링
-    app/page.js 를 통한 메인 페이지 렌더링 방식 이해
+    app/page.jsx 를 통한 메인 페이지 렌더링 방식 이해
 
 #2. 기본 라우팅
     localhost:3000/about
@@ -122,6 +122,6 @@
     [productId]/하단에 생성하였기 때문에 lh:3-/products에는 레이아웃이 적용되지 않지만,
     lh:3-/products/1, 2와 같은 페이지에는 레이아웃이 추가 적용되었음
 
-    app/layout.js의 children이 products/[productId]/layout.js 파일을 렌더링함
+    app/layout.js의 children이 products/[productId]/layout.jsx 파일을 렌더링함
     즉, children을 타고 내려가면서 렌더링이 진행됨
 
