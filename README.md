@@ -28,4 +28,11 @@
 | TodoList 구현 | Component실습, <br> ContextApi 사용해서 리팩터링     | <img src="https://github.com/user-attachments/assets/48b1d088-c1d8-4c05-8c13-43f8dbc3f6af" alt="Todo List구현" width="300px">                    |
 | Nginx | Nginx를 활용해 로드밸런싱 실습 <br> localhost:80으로 오는 요청을 node 서버 A,B,C로 분배해주는 실습 | ![loadBalance-ezgif com-crop](https://github.com/user-attachments/assets/b3787a29-5a95-437b-ad3a-0d1cd8392c8e)|
 
+### 4주차: Next.js
+| **프로젝트** | **설명**                  | **이미지**                                                                                                                                      |
+|--------------|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| Invoice Dashboard 구현 |  [학습 가이드](https://nextjs.org/learn/dashboard-app/adding-authentication)를 따라 Invoice 페이지 구현하기 <br><br> [결과물](https://fisa.vercel.app/dashboard)    | ![image](https://github.com/user-attachments/assets/40af3499-5c9f-4b59-a4d9-7de45fa988e8)                  
+
+
+
 
