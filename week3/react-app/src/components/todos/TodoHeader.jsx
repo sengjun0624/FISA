@@ -20,7 +20,7 @@ const TodoHeader = () => {
                         data-cy="add-todo-button">Add Todo
                 </button>
             {openModal && createPortal(
-                <Modal>
+                <Modal close={()=>open(false)}>
                     <TodoForm onClose={() => open(false)} options={options} callback={addHandler}/>
                 </Modal>,
                 document.body)}

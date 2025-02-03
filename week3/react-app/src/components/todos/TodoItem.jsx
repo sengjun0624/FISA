@@ -28,7 +28,7 @@ const TodoItem = ({todo}) => {
                 }}/>
             </div>
             {openModal && createPortal(
-                <Modal>
+                <Modal close={()=>open(false)}>
                     <TodoForm onClose={() => open(false)} options={options} callback={(title, summary, category) => {
                         console.log('button called');
                         dispatch({type: 'UPDATE', updateTodo: {id: todo.id, title, summary, category}})
