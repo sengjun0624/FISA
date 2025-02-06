@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import {createContext, useContext, useEffect, useReducer} from "react";
 
 // 할일 데이터를 제공하는 컨텍스트
 export const TodoContext = createContext();
@@ -28,40 +28,53 @@ const dummyTodos = [
 ];
 
 // TodoContext와 TodoDispatchContext를 감싼(Wraping) 컴포넌트(추상화)
-export const TodoProvider = ({ children }) => {
+export const TodoProvider = ({children}) => {
 
-    const [todos, dispatch] = useReducer(reducer, { data: dummyTodos, category: 'ALL' });
+    const getLocalStorageTasks = () => {
+        try {
+
+            let storedData = localStorage.getItem("tasks")||dummyTodos;
+            storedData = (storedData === []) ? dummyTodos : storedData;
+            return storedData ? JSON.parse(storedData) : [];
+        } catch (error) {
+            console.error("localStorage 데이터 오류:", error);
+            return [];
+        }
+    };
+    const [todos, dispatch] = useReducer(reducer, {data:getLocalStorageTasks(), category: 'ALL'});
+
+    useEffect(() => {
+        localStorage.setItem(
+            "tasks", JSON.stringify(todos.data)
+        )
+    }, [todos]);
 
     return (
         <TodoContext.Provider value={todos}>
             <TodoDispatchContext.Provider value={dispatch}>
-                { children }
+                {children}
             </TodoDispatchContext.Provider>
         </TodoContext.Provider>
     )
 }
-
 export const useTodos = () => useContext(TodoContext);
 export const useTodosDispatch = () => useContext(TodoDispatchContext);
 
 const reducer = (todos, action) => {
-
-    const { data, category } = todos;
+    const {data, category} = todos;
     switch (action.type) {
         case 'ADD':
-            const { newTodo } = action;
-            return { data: [...data, newTodo], category };
+            const {newTodo} = action;
+            return {data: [newTodo, ...data], category};
         case 'UPDATE':
-            const { updateTodo } = action;
-            const updatedTodos = data.map(todo => todo.id === updateTodo.id ? { ...updateTodo } : todo);
-            return { data: updatedTodos, category }
-
+            const {updateTodo} = action;
+            const updatedTodos = data.map(todo => todo.id === updateTodo.id ? {...updateTodo} : todo);
+            return {data: updatedTodos, category}
         case 'DELETE':
-            const { id } = action;
+            const {id} = action;
             const deletedTodos = data.filter(todo => todo.id !== id);
-            return { data: deletedTodos, category }
-
+            return {data: deletedTodos, category}
         case 'FILTER':
-            return { data, category: action.selectedCategory }
+            return {data, category: action.selectedCategory}
     }
 }
