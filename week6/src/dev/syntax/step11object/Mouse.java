@@ -1,4 +1,4 @@
-package dev.syntax.step11objcet;
+package dev.syntax.step11object;
 
 public class Mouse {
 	int age;

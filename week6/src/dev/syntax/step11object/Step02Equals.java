@@ -1,4 +1,4 @@
-package dev.syntax.step11objcet;
+package dev.syntax.step11object;
 
 /**
  * 기본 시그니처(내부 구현코드)
