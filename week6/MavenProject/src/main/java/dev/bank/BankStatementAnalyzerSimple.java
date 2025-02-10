@@ -1,5 +1,7 @@
 package dev.bank;
 
+import static dev.bank.BankStatementCSVParser.*;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,6 +9,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import dev.bank.model.BankTransaction;
 
 /**
  *
@@ -18,7 +22,8 @@ import java.util.List;
 
 public class BankStatementAnalyzerSimple {
 	private static final String RESOURCES = "src/main/resources/csv/";
-	private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	private static final BankStatementCSVParser parser = new BankStatementCSVParser();
+
 
 	public static void main(String[] args) {
 		// Step 1 : 입출금 내역 파일 읽어들이기 (.csv파일 이라고 가정)
@@ -27,6 +32,8 @@ public class BankStatementAnalyzerSimple {
 		// 1-2. 실제 파일 읽기, Files 객체를 통해
 		try {
 			List<String> lines = Files.readAllLines(path);
+			List<BankTransaction> bankTransactions = parser.parseLinesFromCSV(lines);
+
 
 			if (lines.isEmpty()) {
 				throw new Exception("입출금 내역이 존재하지 않습니다.");
@@ -43,8 +50,8 @@ public class BankStatementAnalyzerSimple {
 			System.out.println(result);
 
 			// Step 2 :전체 입출금 내역 조회
-			String resultForMonth = String.format("1월의 입출금액은 %d원 입니다.", findTransactionsInJanuary(lines));
-			System.out.println(resultForMonth);
+			// String resultForMonth = String.format("1월의 입출금액은 %d원 입니다.", findTransactionsInJanuary(lines));
+			// System.out.println(resultForMonth);
 
 		} catch (Exception e) {
 			System.out.println("입출금 내역 파일이 존재하지 않습니다.");
@@ -55,16 +62,4 @@ public class BankStatementAnalyzerSimple {
 		// Step 3 : 콘솔로 입출금 내역 결과 출력
 	}
 
-	private static long findTransactionsInJanuary(List<String> lines) {
-		long ret = 0L;
-		for (String line : lines) {
-			String[] columns = line.split(",");
-			LocalDate dateTIme = LocalDate.parse(columns[0], DATE_PATTERN);
-
-			if (dateTIme.getMonth() == Month.JANUARY) {
-				ret += Long.parseLong(columns[2]);
-			}
-		}
-		return ret;
-	}
 }
