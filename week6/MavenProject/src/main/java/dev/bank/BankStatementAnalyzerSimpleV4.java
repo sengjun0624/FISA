@@ -1,3 +1,4 @@
+/*
 package dev.bank;
 
 
@@ -14,6 +15,7 @@ import dev.bank.parser.BankStatementParser;
 import dev.bank.parser.BankStatementTSVParser;
 import dev.bank.service.BankStatementProcessor;
 
+*/
 /**
  *
  * @ TODO (BankStatementAnalyzerSimple의 관심사)
@@ -21,7 +23,10 @@ import dev.bank.service.BankStatementProcessor;
  * 2. 전체 입출금 내역 조회
  * 3. 콘솔로 입출금 내역 결과 출력
  *//*
- */
+*/
+/*
+ *//*
+
 
 
 
@@ -48,9 +53,11 @@ public class BankStatementAnalyzerSimpleV4 {
 			// TSV일 경우,
 			parser = new BankStatementTSVParser();
 
-		/*	if (args[0].contains("txt")) {
+		*/
+/*	if (args[0].contains("txt")) {
 			} else
-				parser = new BankStatementCSVParser();*/
+				parser = new BankStatementCSVParser();*//*
+
 
 			List<BankTransaction> bankTransactionsTSV = parser.parseLinesFrom(lines);
 			bankService = new BankStatementProcessor(bankTransactionsTSV);
@@ -71,3 +78,4 @@ public class BankStatementAnalyzerSimpleV4 {
 
 }
 
+*/
