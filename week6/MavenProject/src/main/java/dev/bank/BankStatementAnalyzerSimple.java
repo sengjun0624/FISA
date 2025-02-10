@@ -1,16 +1,12 @@
 package dev.bank;
 
-import static dev.bank.BankStatementCSVParser.*;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import dev.bank.model.BankTransaction;
+import dev.bank.parser.BankStatementCSVParser;
 
 /**
  *
@@ -36,7 +32,7 @@ public class BankStatementAnalyzerSimple {
 			if (lines.isEmpty()) {
 				throw new Exception("입출금 내역이 존재하지 않습니다.");
 			}
-			List<BankTransaction> bankTransactions = parser.parseLinesFromCSV(lines);
+			List<BankTransaction> bankTransactions = parser.parseLinesFrom(lines);
 
 
 

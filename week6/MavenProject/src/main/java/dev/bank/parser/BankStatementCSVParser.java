@@ -1,9 +1,8 @@
-package dev.bank;
+package dev.bank.parser;
 
 import static dev.bank.BankStatementAnalyzerSimpleV2.*;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ import dev.bank.model.BankTransaction;
  *
  * BankStatementCSVParser - 읽어들인 CSV 파일을 Java 프로그램에서 사용할 수 있도록 변환 처리 역할 수행
  */
-public class BankStatementCSVParser {
+public class BankStatementCSVParser implements BankStatementParser {
 	private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 	/**
@@ -23,7 +22,8 @@ public class BankStatementCSVParser {
 	 * @param lines
 	 * @return List<BankTransaction>
 	 */
-	public List<BankTransaction> parseLinesFromCSV(List<String> lines) {
+	@Override
+	public List<BankTransaction> parseLinesFrom(List<String> lines) {
 		// 하나 하나 조회해서 객체 생성해서 배열로 만든다.
 		List<BankTransaction> result = new ArrayList<>();
 		for(String line: lines){
@@ -35,7 +35,5 @@ public class BankStatementCSVParser {
 
 		return result;
 	}
-
-
 
 }
