@@ -1,5 +1,7 @@
 package dev.bank;
 
+import static dev.bank.BankStatementAnalyzerSimpleV2.*;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
@@ -35,16 +37,5 @@ public class BankStatementCSVParser {
 	}
 
 
-	/*private static long findTransactionsInJanuary(List<String> lines) {
-		long ret = 0L;
-		for (String line : lines) {
-			String[] columns = line.split(",");
-			LocalDate dateTIme = LocalDate.parse(columns[0], DATE_PATTERN);
 
-			if (dateTIme.getMonth() == Month.JANUARY) {
-				ret += Long.parseLong(columns[2]);
-			}
-		}
-		return ret;
-	}*/
 }

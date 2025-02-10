@@ -21,6 +21,10 @@ public class BankTransaction {
 		this.amount = amount;
 	}
 
+	public LocalDate getDate() {
+		return date;
+	}
+
 	public String getDescription() {
 		return description;
 	}

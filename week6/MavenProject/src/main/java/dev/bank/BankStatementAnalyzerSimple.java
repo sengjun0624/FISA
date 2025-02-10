@@ -32,22 +32,14 @@ public class BankStatementAnalyzerSimple {
 		// 1-2. 실제 파일 읽기, Files 객체를 통해
 		try {
 			List<String> lines = Files.readAllLines(path);
-			List<BankTransaction> bankTransactions = parser.parseLinesFromCSV(lines);
-
 
 			if (lines.isEmpty()) {
 				throw new Exception("입출금 내역이 존재하지 않습니다.");
 			}
-			long total = 0L;
+			List<BankTransaction> bankTransactions = parser.parseLinesFromCSV(lines);
 
-			for (String line : lines) {
-				String[] columns = line.split(",");
-				long amount = Long.parseLong(columns[2]);
-				total += amount;
-			}
 
-			String result = String.format("총 입출금액은 %d원 입니다.", total);
-			System.out.println(result);
+
 
 			// Step 2 :전체 입출금 내역 조회
 			// String resultForMonth = String.format("1월의 입출금액은 %d원 입니다.", findTransactionsInJanuary(lines));
@@ -56,7 +48,6 @@ public class BankStatementAnalyzerSimple {
 		} catch (Exception e) {
 			System.out.println("입출금 내역 파일이 존재하지 않습니다.");
 			e.printStackTrace();
-
 		}
 
 		// Step 3 : 콘솔로 입출금 내역 결과 출력
