@@ -1,6 +1,5 @@
 package dev.bank.parser;
 
-import static dev.bank.BankStatementAnalyzerSimpleV2.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

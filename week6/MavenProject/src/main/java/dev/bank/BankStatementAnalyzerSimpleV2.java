@@ -1,3 +1,4 @@
+/*
 package dev.bank;
 
 import java.nio.file.Files;
@@ -10,13 +11,15 @@ import java.util.List;
 import dev.bank.model.BankTransaction;
 import dev.bank.parser.BankStatementCSVParser;
 
+*/
 /**
  *
  * @ TODO (BankStatementAnalyzerSimple의 관심사)
  * 1. 입출금 내역 파일 읽어들이기
  * 2. 전체 입출금 내역 조회
  * 3. 콘솔로 입출금 내역 결과 출력
- */
+ *//*
+
 
 public class BankStatementAnalyzerSimpleV2 {
 	private static final String RESOURCES = "src/main/resources/csv/";
@@ -71,3 +74,4 @@ public class BankStatementAnalyzerSimpleV2 {
 		return ret;
 	}
 }
+*/
