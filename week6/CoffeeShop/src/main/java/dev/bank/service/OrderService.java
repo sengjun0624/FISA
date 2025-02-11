@@ -11,8 +11,8 @@ import dev.bank.model.enums.OrderType;
 public class OrderService {
 	public void pay(Order order) {
 		int totalAmount = calculateTotal(order.getDrinkList(), order.getOrderType());
-		int receivedAmount = order.getReceivedAmount();
-		int change = receivedAmount - totalAmount;
+		long receivedAmount = order.getReceivedAmount();
+		long change = receivedAmount - totalAmount;
 
 		System.out.println("\n+------------------------+");
 		System.out.println("|      📜 영수증        |");
