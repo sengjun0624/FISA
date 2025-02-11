@@ -2,7 +2,10 @@
 /build/
 /node_modules/
 
+.settings/
+
 # 환경 변수
+
 week2/99.papago/.env
 .env.local
 .env.*.local
