@@ -22,7 +22,7 @@ public class CoffeeOrder {
 	public static void orderProcess() throws IOException, InterruptedException {
 		System.out.println("안녕하세요 주문을 시작하겠습니다.");
 		System.out.println();
-		System.out.println("주문 유형을 선택하세요");
+		System.out.println("주문 유형을 입력하세요. (1/2)");
 		System.out.println("1. 매장 \n2. 테이크 아웃 (500원 할인)");
 
 		String input = br.readLine();
@@ -30,7 +30,7 @@ public class CoffeeOrder {
 		printOrderType(orderType);
 
 		while (true) {
-			System.out.println("음료를 선택하세요.");
+			System.out.println("음료를 선택하세요. (1/2)");
 			System.out.println("1. 아메리카노 - 2000원 \n2. 라떼 - 2500원");
 			input = br.readLine();
 
