@@ -13,17 +13,21 @@ import dev.bank.parser.BankStatementTSVParser;
 import dev.bank.service.BankStatementProcessor;
 
 public class BankStatementAnalyzer {
-	private static final String RESOURCES = "src/main/resources/csv/";
+	// private static final String RESOURCES = "~/Desktop/temp/FISA/week6/MavenProject/src/main/resources/csv/";
+	private static final String RESOURCES = "/resources/";
 
 	private static BankStatementParser parser = null;
 	private static BankStatementProcessor bankService = null;
 
 	public void analyze(String fileName) {
-		final Path PATH = Paths.get(RESOURCES + fileName);
+		final Path path = Paths.get(RESOURCES + fileName);
+		String homeDir = System.getProperty("user.home");
+		// Path path = Paths.get(homeDir, "Desktop", "temp", "FISA", "week6", "MavenProject", "src", "main", "resources", "csv", "bank-data.csv");
+
 		parser = (fileName.contains("txt")) ? new BankStatementTSVParser() : new BankStatementCSVParser();
 
 		try {
-			List<String> lines = Files.readAllLines(PATH);
+			List<String> lines = Files.readAllLines(path);
 
 			List<BankTransaction> bankTransactions = parser.parseLinesFrom(lines);
 
