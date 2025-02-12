@@ -1,10 +1,12 @@
+package Step01;
+
 import static java.util.logging.Logger.*;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Step01Logging {
-	private static final Logger Logger = getLogger("Step01Logging");
+	private static final Logger Logger = getLogger("Step01.Step01Logging");
 
 	// Logger logger = new Logger();  로그의 생성과 사용둘 다 이 파일에서
 

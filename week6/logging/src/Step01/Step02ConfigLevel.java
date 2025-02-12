@@ -1,10 +1,11 @@
+package Step01;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Step02ConfigLevel {
 	// Logger 객체 생성
-	private static final Logger logger = Logger.getLogger("Step02ConfigLevel");
+	private static final Logger logger = Logger.getLogger("Step01.Step02ConfigLevel");
 
 	public static void main(String[] args) {
 
