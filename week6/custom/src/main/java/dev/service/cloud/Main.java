@@ -1,7 +1,9 @@
 package dev.service.cloud;
 
+import static util.AsciiArt.*;
+
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("Hello world!");
+		printGMG();
 	}
 }

@@ -21,15 +21,14 @@ public class BankStatementAnalyzer {
 
 	public void analyze(String fileName) {
 		final Path path = Paths.get(RESOURCES + fileName);
-		String homeDir = System.getProperty("user.home");
-		// Path path = Paths.get(homeDir, "Desktop", "temp", "FISA", "week6", "MavenProject", "src", "main", "resources", "csv", "bank-data.csv");
-
 		parser = (fileName.contains("txt")) ? new BankStatementTSVParser() : new BankStatementCSVParser();
+		System.out.println(parser);
 
 		try {
 			List<String> lines = Files.readAllLines(path);
-
-			List<BankTransaction> bankTransactions = parser.parseLinesFrom(lines);
+			System.out.println(lines);
+			String regex = (parser instanceof BankStatementCSVParser) ? "," : "\t";
+			List<BankTransaction> bankTransactions = parser.parseLinesFrom(lines,regex);
 
 			bankService = new BankStatementProcessor(bankTransactions);
 
