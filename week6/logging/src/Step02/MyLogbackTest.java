@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
  * Logback 버전은 1.4.5버전으로
  */
 public class MyLogbackTest {
+	public static final Logger logger = LoggerFactory.getLogger("MyLogbackTest");
 
 	public static void main(String[] args) {
-		Logger logger = LoggerFactory.getLogger("MyLogbackTest");
 		logger.info("abc");
 	}
 }
