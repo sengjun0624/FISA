@@ -1,12 +1,13 @@
+/*
 package Step02;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
+*/
 /**
  * java.util.logging 패키지가 아닌,
  * 아파치 재단에서 제공하는 log4j 라이브러리
- */
+ *//*
+
 
 public class MyLog4jTest {
 	private static Logger logger = LogManager.getLogger(MyLog4jTest.class);
@@ -16,3 +17,4 @@ public class MyLog4jTest {
 	}
 
 }
+*/
