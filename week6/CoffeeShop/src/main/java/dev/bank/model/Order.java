@@ -12,6 +12,7 @@ public class Order {
 	private long receivedAmount;
 
 	public Order(List<Drink> drinkList, OrderType orderType, long receivedAmount) {
+
 		this.drinkList = drinkList;
 		this.orderType = orderType;
 		this.receivedAmount = receivedAmount;
@@ -26,6 +27,7 @@ public class Order {
 	}
 
 	public long getReceivedAmount() {
+
 		return receivedAmount;
 	}
 }

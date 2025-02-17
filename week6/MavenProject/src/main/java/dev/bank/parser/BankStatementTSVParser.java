@@ -10,4 +10,5 @@ import dev.bank.model.BankTransaction;
 public class BankStatementTSVParser implements BankStatementParser {
 	private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+
 }

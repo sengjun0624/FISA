@@ -16,11 +16,13 @@ public class BankStatementAnalyzer {
 	// private static final String RESOURCES = "~/Desktop/temp/FISA/week6/MavenProject/src/main/resources/";
 	private static final String RESOURCES = "src/main/resources/";
 
+
 	private static BankStatementParser parser = null;
 	private static BankStatementProcessor bankService = null;
 
 	public void analyze(String fileName) {
 		final Path path = Paths.get(RESOURCES + fileName);
+
 		parser = (fileName.contains("txt")) ? new BankStatementTSVParser() : new BankStatementCSVParser();
 
 		try {
@@ -28,6 +30,7 @@ public class BankStatementAnalyzer {
 			System.out.println(lines);
 			String regex = (parser instanceof BankStatementCSVParser) ? "," : "\t";
 			List<BankTransaction> bankTransactions = parser.parseLinesFrom(lines,regex);
+
 
 			bankService = new BankStatementProcessor(bankTransactions);
 

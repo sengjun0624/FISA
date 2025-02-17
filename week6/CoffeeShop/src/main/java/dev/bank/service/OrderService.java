@@ -38,6 +38,7 @@ public class OrderService {
 	}
 
 
+
 	public int calculateTotal(List<Drink> drinkList, OrderType orderType) {
 		int ret = 0;
 		for (Drink drink : drinkList) {

@@ -8,6 +8,7 @@ public class MainApplication {
 
 		// jar 실행용 클래스
 		BankStatementAnalyzer analyzer = new BankStatementAnalyzer();
+
 		analyzer.analyze(args[0]); // ex. args = "bank-data.txt"
 	}
 

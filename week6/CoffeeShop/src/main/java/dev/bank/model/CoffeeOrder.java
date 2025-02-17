@@ -8,6 +8,7 @@ import static dev.bank.printer.OrderTypePrinter.*;
 import static dev.bank.util.Input.*;
 import static dev.bank.validator.InputValidator.*;
 
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class CoffeeOrder {
 
 		int orderNumber = NumberReader();
 		OrderType orderType = parseOrderType(orderNumber);
+
 		printOrderType(orderType);
 
 		while (true) {
@@ -54,6 +56,7 @@ public class CoffeeOrder {
 		System.out.println("주문하신 음료가 나왔습니다. ");
 		Thread.sleep(1000);
 
+e.pay(order);
 	}
 }
 

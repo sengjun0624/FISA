@@ -15,10 +15,12 @@ import dev.bank.model.BankTransaction;
  */
 public class BankStatementCSVParser implements BankStatementParser {
 
+
 	/**
 	 *
 	 * @param lines
 	 * @return List<BankTransaction>
 	 */
+
 
 }
