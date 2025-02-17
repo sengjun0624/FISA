@@ -39,8 +39,10 @@ public class BankStatementAnalyzerWithJar {
 			System.out.println("올바른 파일 확장자를 선택하세요.");
 			return;
 		}
+		String regex = (parser instanceof BankStatementCSVParser) ? "," : "\t";
 		// 2. 두 번째 관심사 - 읽어들인 데이터 파싱 처리
-		List<BankTransaction> bankTransactions = parser.parseLinesFrom(lines);
+		List<BankTransaction> bankTransactions = parser.parseLinesFrom(lines, regex);
+
 		// 3. 세 번째 관심사 - 연산 처리 및 연산 결과 출력
 		BankStatementProcessor processor = new BankStatementProcessor(bankTransactions);
 		String result = String.format("총 입출금액은 %d원입니다.", processor.calculateTotal());

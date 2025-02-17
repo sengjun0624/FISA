@@ -9,9 +9,10 @@ import dev.bank.model.enums.OrderType;
 public class Order {
 	private List<Drink> drinkList = new ArrayList<>();
 	private OrderType orderType;
-	private int receivedAmount;
+	private long receivedAmount;
 
-	public Order(List<Drink> drinkList, OrderType orderType, int receivedAmount) {
+	public Order(List<Drink> drinkList, OrderType orderType, long receivedAmount) {
+
 		this.drinkList = drinkList;
 		this.orderType = orderType;
 		this.receivedAmount = receivedAmount;
@@ -25,7 +26,8 @@ public class Order {
 		return orderType;
 	}
 
-	public int getReceivedAmount() {
+	public long getReceivedAmount() {
+
 		return receivedAmount;
 	}
 }
