@@ -1,7 +1,10 @@
+package dev.syntax.step01createthread;
+
 public class Ex01 {
 	public static void main(String[] args) {
 		FirstThread firstThread = new FirstThread();
 		System.out.println(firstThread);
+		firstThread.start();
 
 	}
 }
