@@ -29,5 +29,4 @@ public class CustomPrintStream extends PrintStream {
 	public void print(boolean x) {
 		super.print(x);
 	}
-
 }
