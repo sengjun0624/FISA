@@ -1,0 +1,42 @@
+0. 기능 개요
+	호텔 룸 예약 서비스
+
+	0-1. BookingService.java
+ 	호텔의 룸을 예약하는 기능과 관련된 서비스
+
+ 		int getAvailablePlaceCount()
+ 		- 하룻밤 묵을 수 있는 총 게스트 수를 확인
+
+ 		double calculatePrice(BookingRequest bookingRequest)
+ 		- 예악 정보(BookingRequest)별 룸 예약 비용 계산
+ 		- 비용 반환
+
+ 		String makeBooking(BookingRequest bookingRequest)
+ 		- 룸 예약 처리
+ 		- 예약된 id값 반환
+
+ 		void cancelBooking(String id)
+ 		- 룸 예약 취소
+
+	0-2. BookingRequest.java
+		private final String userId;
+		private final LocalDate dateFrom; - 예약할 날짜(시작)
+		private final LocalDate dateTo; - 예약할 날짜(끝)
+		private final int guestCount; - 회원 수
+		private final boolean prepaid; - 선불 결제 여부
+		private String roomId; - 방 번호
+
+	0-3. PaymentService.java
+		결제 처리 역할 수행
+
+		String pay(BookingRequest bookingRequest, double price)
+			결제 정보 저장 후 결제 ID값 반환
+
+	0-4. RoomService.java
+		예약 가능한 Room 정보 관리
+
+	0-5. BookingDAO.java
+		예약 내역을 Map 객체로 관리(DB 대신 메모리 형태로 관리)
+
+	0-6. MailSender.java(미구현)
+		예약 정보를 메일로 전송
