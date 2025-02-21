@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql-connector-j-9.2.0" level="project" />
+    <orderEntry type="library" name="unnamed" level="project" />
+    <orderEntry type="library" name="spring-jdbc-5.3.24" level="project" />
   </component>
 </module>

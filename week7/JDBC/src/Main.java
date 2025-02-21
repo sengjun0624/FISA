@@ -1,4 +1,5 @@
-import static dev.syntax.step02todo.util.DBUtil.*;
+
+import static cloud.DBUtil.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,8 +12,6 @@ import java.sql.SQLException;
  */
 public class Main {
 	public static void main(String[] args) throws SQLException {
-		Connection connection = getConnection();
-
-		System.out.println("Hello world!");
+		Connection connection = getConnection("src/resources/jdbc.properties");
 	}
 }
