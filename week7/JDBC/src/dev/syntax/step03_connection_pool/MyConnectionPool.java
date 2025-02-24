@@ -63,9 +63,21 @@ public class MyConnectionPool {
 		return connectionPool.size() + usedConnections.size();
 	}
 
+	// 커넥션 풀 종료 아래 코드는 동시성 문제가 있음.
+	/*public static void shutdown() throws SQLException {
+		usedConnections.forEach(MyConnectionPool::releaseConnection);
+		for (Connection c : connectionPool) {
+			c.close();
+		}
+		connectionPool.clear();
+	}*/
 	// 커넥션 풀 종료
 	public static void shutdown() throws SQLException {
-		usedConnections.forEach(MyConnectionPool::releaseConnection);
+		for (int i = 0; i < usedConnections.size(); i++) {
+			Connection conn = usedConnections.get(i);
+			releaseConnection(conn);
+		}
+
 		for (Connection c : connectionPool) {
 			c.close();
 		}
