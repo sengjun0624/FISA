@@ -1,0 +1,8 @@
+jdbcUrl=jdbc:mysql://localhost:3306/testdb
+username=root
+password=Tmdwns0624@
+
+maximumPoolSize=5
+minimumIdle=2
+
+connectionTimeout=5000
