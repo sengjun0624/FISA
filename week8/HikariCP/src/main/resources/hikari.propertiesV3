@@ -3,6 +3,9 @@ username=root
 password=Tmdwns0624@
 
 maximumPoolSize=5
-minimumIdle=4
-
+minimumIdle=1
 connectionTimeout=5000
+idleTimeout=120000
+keepaliveTime=600000
+maxLifetime=1800000
+

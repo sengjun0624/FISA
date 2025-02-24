@@ -23,7 +23,7 @@ public class HikariCPDataSource {
 	static { // static 블록, 애플리케이션이 시작될 때 먼저 실행되는 코드 블록(프로그램 실행 시 미리 동작하도록 하기 위해)
 		Properties properties = new Properties();
 		try (FileInputStream fis
-				 = new FileInputStream(RESOURCES + scenario_V2)) {
+				 = new FileInputStream(RESOURCES + scenario_V3)) {
 			properties.load(fis);
 			// 필수 설정값 적용
 			config.setJdbcUrl(properties.getProperty("jdbcUrl"));
