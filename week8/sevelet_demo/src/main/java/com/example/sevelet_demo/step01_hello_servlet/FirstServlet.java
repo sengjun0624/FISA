@@ -28,10 +28,12 @@ public class FirstServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 
-		// Hello
+		/*// Hello
 		PrintWriter out = resp.getWriter();
 		out.println("<html><body>");
 		out.println("<h1>" + message + "</h1>");
-		out.println("</body></html>");
+		out.println("</body></html>");*/
+		System.out.println("Hello Servlet!");
+
 	}
 }
