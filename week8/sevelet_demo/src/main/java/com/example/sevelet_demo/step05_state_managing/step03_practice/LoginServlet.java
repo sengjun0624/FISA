@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			// 오류 발생 시 오류 페이지로 리다이렉트
-			resp.sendRedirect("index.html");
+			resp.sendRedirect("index2.html");
 			return;
 		}
 
@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 			return;
 		} else {
 			// 로그인 실패 시 로그인 페이지 또는 실패 안내 페이지로 이동
-			resp.sendRedirect("index.html");
+			resp.sendRedirect("index2.html");
 			return;
 		}
 	}

@@ -1,4 +1,4 @@
-package com.example.servlet_practice;
+package com.example.jsp_practice.servlet_practice;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.transform.Result;
-
-import com.example.servlet_practice.model.Mouse;
+import com.example.jsp_practice.servlet_practice.model.Mouse;
 import com.example.sevelet_demo.step05_state_managing.step03_practice.DBConnectionUtil;
 
 public class MouseDao {
@@ -32,7 +30,27 @@ public class MouseDao {
 		return 0;
 	}
 
-	public List<Mouse> getMouse() {
+	public void updateMouseById(int id, Mouse mouse) {
+		// 특정 쥐를 찾아서 수정하고 싶을때.
+		// id
+		String sql = "UPDATE mouse SET name = ?,country = ? ,address = ? WHERE id = ?";
+
+		try (Connection con = DBConnectionUtil.getConnection();
+			 PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+			pstmt.setString(1, mouse.getName());
+			pstmt.setString(2, mouse.getCountry());
+			pstmt.setString(3, mouse.getAddress());
+			pstmt.setInt(4, id);
+			int isSuccess = pstmt.executeUpdate(); // 성공 시 1 이상 반환
+			if (isSuccess >= 1)
+				System.out.println(mouse.getCountry() + mouse.getName() + "쥐 생성 성공!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<Mouse> findAll() {
 		String sql = "SELECT * FROM Mouse";
 
 		List<Mouse> result = new ArrayList<>();
@@ -41,12 +59,11 @@ public class MouseDao {
 			 PreparedStatement pstmt = con.prepareStatement(sql)) {
 			ResultSet rs = pstmt.executeQuery();
 
-
 			while (rs.next()) {
 				String name = rs.getString("name");
 				String country = rs.getString("country");
 				String address = rs.getString("address");
-				Mouse mouse = new Mouse(name, country, address);
+				Mouse mouse = new Mouse(name ,country, address);
 
 				//여기서 생성한 쥐를 리스트에 추가.
 				result.add(mouse);
@@ -55,8 +72,6 @@ public class MouseDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-
 		return result;
 	}
 }

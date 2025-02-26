@@ -28,6 +28,6 @@ public class LogoutServlet extends HttpServlet {
 		cookie.setPath("/");
 		cookie.setMaxAge(0);
 		resp.addCookie(cookie);
-		resp.sendRedirect("index.html");
+		resp.sendRedirect("index2.html");
 	}
 }

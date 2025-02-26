@@ -32,11 +32,11 @@ public class RegisterServlet extends HttpServlet {
 		if (id == null || id.trim().isEmpty() || password == null || password.trim().isEmpty()) {
 			out.println("<html><head><meta charset='UTF-8'><title>오류</title></head><body>");
 			out.println("<p>아이디 및 비밀번호를 입력해주세요</p>");
-			// 메인 화면(index.html)으로 돌아가는 버튼
-			out.println("<button type='button' onclick=\"window.location.href='index.html'\">메인 화면으로 돌아가기</button>");
+			// 메인 화면(index2.html)으로 돌아가는 버튼
+			out.println("<button type='button' onclick=\"window.location.href='index2.html'\">메인 화면으로 돌아가기</button>");
 			out.println("</body></html>");
 			out.close();
-			resp.sendRedirect("index.html");
+			resp.sendRedirect("index2.html");
 			return;
 		}
 
@@ -53,11 +53,11 @@ public class RegisterServlet extends HttpServlet {
 			// 회원가입 실패 시
 			out.println("<p>회원가입에 실패했습니다.</p>");
 		}
-		// 메인 화면(index.html)으로 돌아가는 버튼
-		out.println("<button type='button' onclick=\"window.location.href='index.html'\">메인 화면으로 돌아가기</button>");
+		// 메인 화면(index2.html)으로 돌아가는 버튼
+		out.println("<button type='button' onclick=\"window.location.href='index2.html'\">메인 화면으로 돌아가기</button>");
 		out.println("</body></html>");
 
-		resp.sendRedirect("index.html");
+		resp.sendRedirect("index2.html");
 		out.close();
 	}
 }

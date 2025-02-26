@@ -16,7 +16,7 @@ public class InfoServlet extends HttpServlet {
 		// 기존 세션을 가져오고, 세션이 없거나 "id" 속성이 없으면 index.html로 리다이렉트
 		HttpSession session = req.getSession(false);
 		if (session == null || session.getAttribute("id") == null) {
-			resp.sendRedirect("index.html");
+			resp.sendRedirect("index2.html");
 			return;
 		}
 

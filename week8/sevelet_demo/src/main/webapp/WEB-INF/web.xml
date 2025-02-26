@@ -11,12 +11,5 @@
         <welcome-file>default.jsp</welcome-file>
         <welcome-file>default.htm</welcome-file>
     </welcome-file-list>
-    <servlet>
-        <servlet-name>MyFirstServlet</servlet-name>
-        <servlet-class>com.example.sevelet_demo.step01_hello_servlet.FirstServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MyFirstServlet</servlet-name>
-        <url-pattern>/first-servlet</url-pattern>
-    </servlet-mapping>
+
 </web-app>
