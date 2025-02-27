@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/create-mouse")
+// @WebServlet("/create-mouse")
 public class MouseCreateServlet extends HttpServlet {
 	private static final MouseDao mouseDao = new MouseDao();
 	@Override

@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/get-mouse")
+// @WebServlet("/get-mouse")
 public class MouseListServlet extends HttpServlet {
 	private static final MouseDao dao = new MouseDao();
 

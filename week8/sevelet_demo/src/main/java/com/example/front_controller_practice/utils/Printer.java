@@ -1,18 +1,13 @@
-package com.example.jsp_practice.servlet_practice;
+package com.example.front_controller_practice.utils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-// @WebServlet("/update")
-public class UpdateInfoServlet extends HttpServlet {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+public class Printer {
+	public static void printMouseRegisterForm(HttpServletRequest request, HttpServletResponse resp) throws IOException {
 		StringBuilder responseHTML = new StringBuilder();
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
