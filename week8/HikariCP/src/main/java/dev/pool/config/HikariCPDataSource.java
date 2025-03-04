@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 /**
  * HikariCP 기반 DataSource를 통해 커넥션 풀을 생성하기 위한 래퍼(Wrapper) 클래스
  */

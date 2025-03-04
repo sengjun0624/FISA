@@ -1,4 +1,4 @@
-package com.example.front_controller_practice;
+package com.example.front_controller_practice.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import com.example.sevelet_demo.step05_state_managing.step03_practice.DBConnecti
 
 import com.example.front_controller_practice.model.Mouse;
 
-public class MouseDao {
+public class MouseDAO {
 
 	public int insertMouse(Mouse mouse) {
 		String sql = "INSERT INTO mouse (name, country,address) VALUES (?, ?,?)";

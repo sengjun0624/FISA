@@ -1,28 +1,25 @@
-package com.example.front_controller_practice;
+package com.example.front_controller_practice.controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import com.example.front_controller_practice.DAO.MouseDAO;
+import com.example.front_controller_practice.model.ModelAndView;
 import com.example.front_controller_practice.model.Mouse;
-import com.example.front_controller_practice.model.MouseController;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 실제 Moust 목록 조회 처리를 수행할 컨트롤러
  */
-public class MouseListController implements MouseController {
-	private static final MouseDao dao = new MouseDao();
+public class MouseController implements Controller {
+	private static final MouseDAO dao = new MouseDAO();
 
-	public void process(HttpServletRequest req, HttpServletResponse resp) {
+	public ModelAndView process(HttpServletRequest req, HttpServletResponse resp) {
 		try {
 			resp.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = resp.getWriter();
-
 			// DB에서 Mouse 데이터를 모두 조회합니다.
 			List<Mouse> mice = dao.getMouse();
 
@@ -56,5 +53,6 @@ public class MouseListController implements MouseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 }

@@ -1,4 +1,4 @@
-package com.example.front_controller_practice;
+package com.example.front_controller_practice.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
