@@ -1,4 +1,4 @@
-package dev.spring.step01_dependency;
+package dev.spring.step03_setter_injections;
 
 import static dev.spring.step01_dependency.TapeCompany.*;
 
@@ -13,8 +13,8 @@ public class MyRoom {
 	public static void main(String[] args) {
 
 		// TapeReader는 Tape에 의존하고 있음(dependent)ㅔ
-		Tape tape = new Tape("아일랜드",true);
-		TapeReader tapeReader = new TapeReader();
+		Tape tape = createTape();
+		TapeReader tapeReader = createTapeReader();
 		tapeReader.setTape(tape);
 		// setter()를 통해 Tape 타입에 대한 의존성(dependency)를 TapeReader에게 주입(Injection)
 		// -> TapeReader라는 클래스는 Tape라는 타입의 클래스가 없으면 동작할 수 없다는 것
