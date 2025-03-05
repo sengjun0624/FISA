@@ -11,8 +11,8 @@ import static dev.spring.step01_dependency.TapeCompany.*;
 public class MyRoom {
 
 	public static void main(String[] args) {
-		
-		// TapeReader는 Tape에 의존하고 있음(dependent)
+
+		// TapeReader는 Tape에 의존하고 있음(dependent)ㅔ
 		Tape tape = createTape();
 		TapeReader tapeReader = createTapeReader();
 		tapeReader.setTape(tape);
