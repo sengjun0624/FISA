@@ -25,5 +25,3 @@ bin/
 ### VS Code ###
 .vscode/
 ThreadPool.iml
-### Mac OS ###
-.DS_Store
