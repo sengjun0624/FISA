@@ -1,31 +1,21 @@
 package dev.spring.annotation.domain;
 
+import org.springframework.beans.factory.annotation.Value;
+
 public class Tape {
+	// Value를 사용해 필드에 값을 직접 주입
+	@Value("아일랜드")
 	private String name;
+	@Value("true")
 	private boolean isWorked;
 
-	public Tape() {
+	public Tape() {}
 
-	}
-
-	public Tape(String name, boolean isWorked) {
-		this.name = name;
-		this.isWorked = isWorked;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setWorked(boolean worked) {
-		isWorked = worked;
+	public boolean isWorked() {
+		return isWorked;
 	}
 
 	public String getName() {
 		return name;
-	}
-
-	public boolean isWorked() {
-		return isWorked;
 	}
 }

@@ -1,19 +1,15 @@
 package dev.spring.annotation.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class TapeReader {
+
+	@Autowired
 	private Tape tape;
 
-	public TapeReader(Tape tape) {
-		this.tape = tape;
+	public TapeReader(){
+		System.out.println("TapeReader() called");
 	}
-
-	public TapeReader() {
-	}
-
-	public void setTape(Tape tape1) {
-		this.tape = tape;
-	}
-
 	public void test() {
 		if (tape.isWorked()) {
 			System.out.println(tape.getName() + " 잘 동작합니다");
