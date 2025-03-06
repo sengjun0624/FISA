@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class TapeReader {
 
-	@Autowired
 	private Tape tape;
 
+	@Autowired
+	public void setTape(Tape tape) {
+		this.tape = tape;
+	}
+
 	public TapeReader(){
-		System.out.println("TapeReader() called");
 	}
 	public void test() {
 		if (tape.isWorked()) {
