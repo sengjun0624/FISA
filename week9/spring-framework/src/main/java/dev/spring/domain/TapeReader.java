@@ -1,4 +1,4 @@
-package dev.spring.step03_setter_injections;
+package dev.spring.domain;
 
 public class TapeReader {
 	private Tape tape;

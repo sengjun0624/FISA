@@ -1,6 +1,9 @@
 package dev.spring.step02_factory;
 
-import static dev.spring.step01_dependency.TapeCompany.*;
+import static dev.spring.step02_factory.TapeCompany.*;
+
+import dev.spring.domain.Tape;
+import dev.spring.domain.TapeReader;
 
 /**
  * 내 방

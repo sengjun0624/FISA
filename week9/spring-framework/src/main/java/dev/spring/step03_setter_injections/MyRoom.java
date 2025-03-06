@@ -1,25 +1,27 @@
 package dev.spring.step03_setter_injections;
 
-import static dev.spring.step01_dependency.TapeCompany.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-/**
- * 내 방
- *
- * 비디오 테이프를 빌렸는데, 내 방에서 Tape(.java)가 잘 돌아가는지 테스트
- * 테스트는 비디오 테스트 기기인 TapeReader(.java)를 통해 수행할 수 있음
- */
+import dev.spring.domain.Tape;
+import dev.spring.domain.TapeReader;
+
 public class MyRoom {
 
 	public static void main(String[] args) {
 
-		// TapeReader는 Tape에 의존하고 있음(dependent)ㅔ
-		Tape tape = createTape();
-		TapeReader tapeReader = createTapeReader();
-		tapeReader.setTape(tape);
-		// setter()를 통해 Tape 타입에 대한 의존성(dependency)를 TapeReader에게 주입(Injection)
-		// -> TapeReader라는 클래스는 Tape라는 타입의 클래스가 없으면 동작할 수 없다는 것
+		// 스프링 컨테이너 객체 생성
+		ApplicationContext context = new ClassPathXmlApplicationContext("setter-config.xml");
 
-		// 테스트 수행
-		tapeReader.test();
+		// 생성한 스프링 컨테이너 객체가 설정 파일을 읽도록 지정
+		TapeReader reader = context.getBean(TapeReader.class);
+		System.out.println("reader = " + reader);
+
+
+		// TODO: Tape에 대한 의존성도 설정 정보에 작성해서,
+		Tape tape = context.getBean(Tape.class);
+
+		// 설정 파일을 읽은 스프링 컨테이너를 통해 필요한 빈을 가져오기
+		reader.test();
 	}
 }
