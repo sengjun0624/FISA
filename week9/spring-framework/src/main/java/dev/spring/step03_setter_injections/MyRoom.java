@@ -18,7 +18,7 @@ public class MyRoom {
 		System.out.println("reader = " + reader);
 
 
-		// TODO: Tape에 대한 의존성도 설정 정보에 작성해서,
+		// TODO: Tape에 대한 의존성도 설정 정보에 작성해서, 세터 주입 작성해보기
 		Tape tape = context.getBean(Tape.class);
 
 		// 설정 파일을 읽은 스프링 컨테이너를 통해 필요한 빈을 가져오기

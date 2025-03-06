@@ -3,7 +3,14 @@ package dev.spring.domain;
 public class TapeReader {
 	private Tape tape;
 
-	public void setTape(Tape tape) {
+	public TapeReader(Tape tape) {
+		this.tape = tape;
+	}
+
+	public TapeReader() {
+	}
+
+	public void setTape(Tape tape1) {
 		this.tape = tape;
 	}
 

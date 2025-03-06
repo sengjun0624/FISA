@@ -5,6 +5,12 @@ public class Tape {
 	private boolean isWorked;
 
 	public Tape() {
+
+	}
+
+	public Tape(String name, boolean isWorked) {
+		this.name = name;
+		this.isWorked = isWorked;
 	}
 
 	public void setName(String name) {
@@ -13,11 +19,6 @@ public class Tape {
 
 	public void setWorked(boolean worked) {
 		isWorked = worked;
-	}
-
-	public Tape(String name, boolean isWorked) {
-		this.name = name;
-		this.isWorked = isWorked;
 	}
 
 	public String getName() {
