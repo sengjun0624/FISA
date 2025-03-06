@@ -8,11 +8,11 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="dev.spring.domain.TapeReader">
+    <bean class="dev.spring.xml.domain.TapeReader">
         <constructor-arg name="tape" ref="tape"></constructor-arg>
     </bean>
 
-    <bean id="tape" class="dev.spring.domain.Tape">
+    <bean id="tape" class="dev.spring.xml.domain.Tape">
         <constructor-arg name="name" value="아일랜드"></constructor-arg>
         <constructor-arg name="isWorked" value="true"></constructor-arg>
     </bean>

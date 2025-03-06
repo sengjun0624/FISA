@@ -1,7 +1,7 @@
-package dev.spring.step01_dependency;
+package dev.spring.xml.step01_dependency;
 
-import dev.spring.domain.Tape;
-import dev.spring.domain.TapeReader;
+import dev.spring.xml.domain.Tape;
+import dev.spring.xml.domain.TapeReader;
 
 /**
  * 내 방

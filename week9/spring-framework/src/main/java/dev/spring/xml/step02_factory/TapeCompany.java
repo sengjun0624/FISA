@@ -1,7 +1,7 @@
-package dev.spring.step02_factory;
+package dev.spring.xml.step02_factory;
 
-import dev.spring.domain.Tape;
-import dev.spring.domain.TapeReader;
+import dev.spring.xml.domain.Tape;
+import dev.spring.xml.domain.TapeReader;
 
 public class TapeCompany {
 	public static TapeReader createTapeReader() {

@@ -1,4 +1,4 @@
-package dev.spring.domain;
+package dev.spring.annotation.domain;
 
 public class Tape {
 	private String name;

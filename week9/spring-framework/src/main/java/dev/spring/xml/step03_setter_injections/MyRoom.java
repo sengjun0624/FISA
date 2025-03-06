@@ -1,10 +1,10 @@
-package dev.spring.step03_setter_injections;
+package dev.spring.xml.step03_setter_injections;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import dev.spring.domain.Tape;
-import dev.spring.domain.TapeReader;
+import dev.spring.xml.domain.Tape;
+import dev.spring.xml.domain.TapeReader;
 
 public class MyRoom {
 

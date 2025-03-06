@@ -1,9 +1,9 @@
-package dev.spring.step02_factory;
+package dev.spring.xml.step02_factory;
 
-import static dev.spring.step02_factory.TapeCompany.*;
+import static dev.spring.xml.step02_factory.TapeCompany.*;
 
-import dev.spring.domain.Tape;
-import dev.spring.domain.TapeReader;
+import dev.spring.xml.domain.Tape;
+import dev.spring.xml.domain.TapeReader;
 
 /**
  * 내 방
