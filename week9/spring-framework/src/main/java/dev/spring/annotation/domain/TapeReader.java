@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class TapeReader {
 
 	private Tape tape;
+
 	@Autowired
 	public TapeReader(Tape tape) {
 		this.tape = tape;

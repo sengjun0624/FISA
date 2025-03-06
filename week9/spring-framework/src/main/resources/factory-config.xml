@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- factory-method에 TapeReader.java에 작성된 createTapeReader()를 활용 -->
+    <bean id="tapeReader" class="dev.spring.xml.domain.TapeReader" factory-method="createTapeReader">
+        <constructor-arg ref="tape"/>
+    </bean>
+
+    <bean id="tape" class="dev.spring.xml.domain.Tape">
+        <constructor-arg type="String" value="아일랜드"/>
+        <constructor-arg type="boolean" value="true"/>
+    </bean>
+</beans>
