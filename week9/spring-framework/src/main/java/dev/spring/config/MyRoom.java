@@ -10,6 +10,4 @@ public class MyRoom {
 	public static void main(String[] args) {
 		new AnnotationConfigApplicationContext(BeanConfig.class).getBean(TapeReader.class).test();
 	}
-
-
 }
