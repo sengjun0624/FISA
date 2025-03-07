@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 애플리케이션의 동작에 필요한 비즈니스 객체에 대한 정보, 즉 Bean을 작성, 구성 -->
+
+<!-- https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/xsd-configuration.html -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="dev.spring.xml.domain.TapeReader">
+        <property name="tape" ref="tape"></property>
+    </bean>
+    
+    <bean id="tape" class="dev.spring.xml.domain.Tape">
+        <property name="name" value="아일랜드"/>
+        <property name="worked" value="true"/>
+    </bean>
+</beans>

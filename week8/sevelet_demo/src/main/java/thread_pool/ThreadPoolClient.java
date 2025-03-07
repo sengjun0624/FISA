@@ -7,6 +7,11 @@ import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+
 
 public class ThreadPoolClient {
 	private static final int REQUEST_COUNT = 10;
@@ -15,7 +20,6 @@ public class ThreadPoolClient {
 
 	public static void main(String[] args) throws InterruptedException {
 		Thread.sleep(5000);
-		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
 		for (int i = 0; i < REQUEST_COUNT; i++) {
 			int requestId = i;
@@ -40,13 +44,21 @@ public class ThreadPoolClient {
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 
+			// TCP_NODELAY 강제 실행 방지
+			connection.setUseCaches(false);
+			connection.setInstanceFollowRedirects(true);
+			connection.setRequestProperty("Connection", "close"); // Keep-Alive 제거
+
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			String response = in.readLine();
+			String response;
+			while ((response = in.readLine()) != null) {
+				System.out.println("[요청 " + requestId + "] 응답: " + response);
+			}
 			in.close();
 
-			System.out.println("[요청 " + requestId + "] 응답: " + response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 }
