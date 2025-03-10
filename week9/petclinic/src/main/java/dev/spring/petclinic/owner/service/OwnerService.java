@@ -1,11 +1,14 @@
 package dev.spring.petclinic.owner.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import dev.spring.petclinic.owner.controller.dto.OwnersRes;
+import dev.spring.petclinic.owner.model.Owner;
 
 public interface OwnerService {
 
-	List<OwnersRes> getOwnersInfo(String lastName);
-	OwnersRes getOwnerDetail(long id);
+	List<Owner> getOwnersInfo(String lastName);
+	Owner findById(long id);
+	public Owner save(Owner owner);
+	Owner updateOwner(long id, Owner owner);
 }
