@@ -1,4 +1,4 @@
-package dev.data.step01_query_method;
+package dev.data;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

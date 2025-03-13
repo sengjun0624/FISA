@@ -1,10 +1,10 @@
-package dev.data.step01_query_method;
+package dev.spring.petclinic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Step01QueryMethodApplicationTests {
+class PetclinicApplicationTests {
 
 	@Test
 	void contextLoads() {
