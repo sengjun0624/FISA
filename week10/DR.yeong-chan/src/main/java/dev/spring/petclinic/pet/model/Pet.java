@@ -18,7 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "pets")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -39,7 +39,7 @@ public class Pet {
 	private PetType type;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "owner_id") // Pet 테이블에 owner_id 컬럼 추가
+	@JoinColumn(name = "owner_id" ,nullable = false) // Pet 테이블에 owner_id 컬럼 추가
 	private Owner owner;
 
 }

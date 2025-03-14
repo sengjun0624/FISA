@@ -3,6 +3,8 @@ package dev.spring.petclinic.pet.controller;
 import dev.spring.petclinic.pet.dto.PetRequestDTO;
 import dev.spring.petclinic.pet.dto.PetResponseDTO;
 import dev.spring.petclinic.pet.service.PetService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +15,15 @@ import org.springframework.web.bind.annotation.*;
 public class PetController {
 	private final PetService petService;
 
-	// 🔹 POST /owners/{ownerId}/pets/{petId}/edit → 특정 Pet 정보 수정
-	@PostMapping("/{petId}/edit")
-	public ResponseEntity<PetResponseDTO> addPet(
-		@PathVariable Long ownerId,
-		@PathVariable Long petId,
-		@RequestBody PetRequestDTO petRequestDTO
-	) {
-		// PetResponseDTO를 return하게 만들고. 그값을 받아서 ResponseEntity.ok() <- 여기에 넣으면됨.
-		PetResponseDTO updatedPet = petService.addPet(ownerId, petId, petRequestDTO);
-		return ResponseEntity.ok(updatedPet);
+	@PostMapping("/new")
+	@Operation(
+		summary = "새로운 반려동물 등록",
+		description = "소유자의 ID와 반려동물 정보를 받아서 새로운 반려동물을 등록합니다."
+	)
+	public ResponseEntity<PetResponseDTO> addPet(        @Parameter(description = "소유자 ID", example = "1") @PathVariable Long ownerId,
+	@RequestBody PetRequestDTO petRequestDTO) {
+
+		PetResponseDTO petResponseDTO = petService.addPet(ownerId, petRequestDTO);
+		return ResponseEntity.ok(petResponseDTO);
 	}
 }

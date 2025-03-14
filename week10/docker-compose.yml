@@ -1,0 +1,55 @@
+services:
+  backend:
+    build:
+      context: ./DR.yeong-chan
+      dockerfile: Dockerfile
+    container_name: spring-boot-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+        condition: service_healthy 
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./pet-clinic
+      dockerfile: Dockerfile
+    container_name: nextjs-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://backend:8080
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  database:
+    image: mysql:8.0
+    container_name: mysql-db # ✅ 네트워크 이름과 통일
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: petclinic
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+    healthcheck:
+      # ✅ 추가
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      retries: 5
+      start_period: 20s
+networks:
+  app-network:
+    driver: bridge
+volumes:
+  mysql_data:

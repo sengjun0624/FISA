@@ -37,11 +37,14 @@ public class OwnerService {
 		// 응답을 OwnerResponseDTO로 변환
 		Owner owner = ownerRepository.findById(id)
 			.orElseThrow(() -> new EntityNotFoundException("Owner not found with id: " + id));
-
+		owner.setId(id);
 		OwnerResponseDTO result = OwnerResponseDTO.of(owner);
 
 		// 단방향 매핑
-		result.setPets(petService.findPetsByOwnerId(id));
+
+		List<PetResponseDTO> petsByOwnerId = petService.findPetsByOwnerId(id);
+
+		result.setPets(petsByOwnerId);
 		return result;
 	}
 

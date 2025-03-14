@@ -34,8 +34,6 @@ public class Owner {
 	private String city;
 	private String telephone;
 
-	@Builder.Default
-	private Boolean isNew = true;
 	public void updateWith(OwnerRequestDTO dto) {
 		if (dto.getFirstName() != null) this.firstName = dto.getFirstName();
 		if (dto.getLastName() != null) this.lastName = dto.getLastName();

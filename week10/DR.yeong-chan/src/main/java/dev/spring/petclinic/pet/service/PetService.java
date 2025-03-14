@@ -3,6 +3,8 @@ package dev.spring.petclinic.pet.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dev.spring.petclinic.owner.model.Owner;
+import dev.spring.petclinic.owner.repository.OwnerRepository;
 import dev.spring.petclinic.pet.dto.PetRequestDTO;
 import dev.spring.petclinic.pet.dto.PetResponseDTO;
 import dev.spring.petclinic.pet.model.Pet;
@@ -16,14 +18,22 @@ import org.springframework.transaction.annotation.Transactional;
 public class PetService {
 	private final PetRepository petRepository;
 
-	@Transactional
-	public PetResponseDTO addPet(Long ownerId, Long petId, PetRequestDTO petRequestDTO) {
-		// 요청 DTO를 Entity로 변환. (정적 팩토리 메서드 활용)
-		// Save후 생성된 Pet -> PetResponseDTO로 변환 ((정적 팩토리 메서드 활용))
-		Pet from = PetRequestDTO.from(petRequestDTO);
-		return PetResponseDTO.of(petRepository.save(from));
-	}
+	private final OwnerRepository ownerRepository; // Owner 조회를 위해 필요
 
+	public PetResponseDTO addPet(Long ownerId, PetRequestDTO petRequestDTO) {
+		// ownerId를 이용해 Owner 조회 (없으면 예외 발생)
+		Owner owner = ownerRepository.findById(ownerId)
+			.orElseThrow(() -> new RuntimeException("해당 ID의 소유자를 찾을 수 없습니다: " + ownerId));
+
+		// PetRequestDTO를 Pet 엔티티로 변환
+		Pet pet = PetRequestDTO.from(petRequestDTO);
+
+		// Pet과 Owner 연결
+		pet.setOwner(owner);
+
+		// Pet 저장 후 DTO 변환하여 반환
+		return PetResponseDTO.of(petRepository.save(pet));
+	}
 	public List<PetResponseDTO> findPetsByOwnerId(Long ownerId){
 		return petRepository.findByOwner_Id(ownerId).stream()
 			.map(PetResponseDTO::of)
