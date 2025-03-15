@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<body>
+
+<h2>
+  <th:block th:if="${pet.id == null}">New </th:block>
+  Pet
+</h2>
+
+<form th:action="@{/owners/{ownerId}/pets/new(ownerId=${owner.id})}"
+      th:object="${pet}" class="form-horizontal" method="post">
+<!--  <input type="hidden" th:field="*{id}" />-->
+
+  <div class="form-group has-feedback">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Owner</label>
+      <div class="col-sm-10">
+        <span th:text="${owner.firstName + ' ' + owner.lastName}"></span>
+      </div>
+    </div>
+    <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}" />
+    <input th:replace="~{fragments/inputField :: input ('Birth Date', 'birthDate', 'date')}" />
+
+    <!-- Select Pet Type -->
+    <select th:field="*{type}" class="form-control">
+      <option value="" disabled selected>-- Select Pet Type --</option>
+      <option th:each="petType : ${types}"
+              th:value="${petType.id}"
+              th:text="${petType.displayName}"></option>
+    </select>
+
+
+
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button class="btn btn-primary" type="submit"
+              th:text="${pet.id == null} ? 'Add Pet' : 'Update Pet'">Add Pet</button>
+    </div>
+  </div>
+</form>
+
+</body>
+</html>
