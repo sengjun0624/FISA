@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- UserController 타입의 Bean을 빈 설정 정보에 등록 -->
+    <bean id="userController" class="dev.aop.UserController" />
+    <!-- SimpleAdvice Bean 등록 -->
+    <bean id="simpleAdvice" class="dev.aop.SimpleAdvice" />
+    <!-- 클라이언트(Main.java)의 요청(getUsers()를 호출하는 작업)을 가로채서
+        개발자가 작성한 SimpleAdvice.java를 동작시켜줄 프록시(Proxy) 객체가 필요함
+
+        프록시 객체를 생성해주는 스프링의 내부 클래스(ProxyFactoryBean)를 빈으로 등록해서 활용해야함
+     -->
+    <bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- targetName: AOP를 적용할 실제 대상이 되는 클래스(bean), 여기서는 UserController -->
+        <property name="target" ref="userController" />
+
+        <!-- interceptorNames: AOP를 적용할 때 처리할 Advice 이름(bean) -->
+        <property name="interceptorNames">
+            <list>
+                <value>simpleAdvice</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- targetName: AOP를 적용할 실제 대상이 되는 클래스(bean), 여기서는 UserController -->
+        <property name="target" ref="userController" />
+
+        <!-- interceptorNames: AOP를 적용할 때 처리할 Advice 이름(bean) -->
+        <property name="interceptorNames">
+            <list>
+                <value>simpleAdvice</value>
+            </list>
+        </property>
+    </bean>
+</beans>
