@@ -1,3 +1,4 @@
+/*
 package dev.security.step02_http_basic.config;
 
 // Spring Security와 관련된 Bean들의 설정 정보가 작성된 파일
@@ -15,13 +16,15 @@ public class SecurityConfig {
 
 	// 시큐리티와 관련해서 커스터마이징이 필요한 스프링 빈들을 직접 작성, 등록
 
-	/*
+	*/
+/*
 		1. SecurityFilterChain이라는 스프링 시큐리티에서 제공하는 스프링 빈을
 		개발자가 별도로 등록
 		-> Spring Security가 기본으로 동작시키는 옵션이 아닌,
 		   개발자만의 별도 옵션을 사용하기 위해 해당 Bean을 커스터마이징 할 수 있도록 하기 위해
 		   등록한 것
-	 */
+	 *//*
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		// 메서드의 인수로 작성된 http라는 지역변수를 통해 시큐리티 관련 옵션들을 커스터마이징 가능
@@ -38,3 +41,4 @@ public class SecurityConfig {
 		return http.build();
 	}
 }
+*/

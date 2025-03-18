@@ -1,6 +1,6 @@
-package dev.security.step03_form_login.config;
+package dev.security.step04_custom_jdbc.config;
 
-// Spring Security와 관련된 Bean들의 설정 정보가 작성된 파일
+import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import dev.security.step04_custom_jdbc.encoder.PlainTextPasswordEncoder;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -28,30 +32,22 @@ public class SecurityConfig {
 			.anyRequest()
 			.authenticated();
 
-
 		return http.build();
 	}
+
 	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+	public PasswordEncoder passwordEncoder (){
+		return new PlainTextPasswordEncoder();
 	}
-
-	// 시큐리티가 기본으로 사용하던 UserDetailsService를 개발자가 재정의하여 사용(커스터마이징)
 	@Bean
-	public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+	public UserDetailsService userDetailsService(DataSource dataSource) {
 
-		// 임시로 애플리케이션 실행 기간 동안만 유지시킬 수 있도록 메모리 형태로 관리하는 객체 생성
-		var userDetailsService = new InMemoryUserDetailsManager();
-
-		// 테스트 용도로 사용할 User 객체 생성
-		UserDetails sampleUser = User.withUsername("gugu")
-			.password(passwordEncoder.encode("1234"))
-			.authorities("read")
-			.build();
-
-		// UserDetailsService에게 해당 sampleUser를 관리하도록 추가
-		userDetailsService.createUser(sampleUser);
+		// JDBC 기반으로 DB에서 사용자를 조회할 수 있도록 구현체를 지정
+		var userDetailsService = new JdbcUserDetailsManager(dataSource);
 
 		return userDetailsService;
+
+		// 현재 DB에 비밀번호는 평문으로 저장이 됨.
+		// 별도의 암호화 없이 그냥 평문으로 비밀번호를 검증할 수 있는 커스텀 인코더 객체를 만들고 빈으로 등록
 	}
 }
