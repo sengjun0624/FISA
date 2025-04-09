@@ -1,12 +1,12 @@
-package dev.mq.step02;
+package dev.mq.step03;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
-
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
 
 /*
     작업(Task)을 작업 큐(Work queue)에 스케줄링하는 프로그램
@@ -18,9 +18,10 @@ import java.util.concurrent.TimeoutException;
 
     실행 인자값(args) 활용해서 Hello...과 같은 값 입력
  */
-public class NewTask {
+public class EmitLogs {
 
-	private static final String TASK_QUEUE_NAME = "task_queue";
+
+	private static final String EXCHANGE_NAME = "logs";
 
 	public static void main(String[] args) throws IOException, TimeoutException {
 		// 서버 연결
@@ -29,17 +30,15 @@ public class NewTask {
 		try (Connection connection = factory.newConnection();
 			 Channel channel = connection.createChannel()) {
 
-			// 큐 생성
-			boolean durable = true;
-			channel.queueDeclare(TASK_QUEUE_NAME, durable, false, false, null);
-			// 실행 옵션으로 메시지를 생성, ex. Hello...
-			String message = String.join(" ", args);
+			String message = args.length < 1 ? "info: Hello World!" :
+				String.join(" ", args);
 
-			// 메시지 적재
-			channel.basicPublish("", TASK_QUEUE_NAME,
-				MessageProperties.PERSISTENT_TEXT_PLAIN,
-				message.getBytes("UTF-8"));
-			System.out.println(" [Publisher] Sent " + message);
+
+			// Exchange 생성
+			channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+
+			channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));
+			System.out.println(" [x] Sent '" + message + "'");
 		}
 
 	}

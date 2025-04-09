@@ -1,12 +1,12 @@
-package dev.mq.step02;
+package dev.mq.step03;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
-
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
 
 /*
     작업 큐에서 꺼낸 작업의 메시지를 처리하는 역할
