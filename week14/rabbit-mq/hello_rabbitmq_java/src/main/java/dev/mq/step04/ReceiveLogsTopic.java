@@ -5,29 +5,29 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
-public class ReceiveLogsDirect {
+public class ReceiveLogsTopic {
 
-
-	private static final String EXCHANGE_NAME = "direct_logs";
+	private static final String EXCHANGE_NAME = "topic_logs";
 
 	public static void main(String[] argv) throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
+
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 
-		channel.exchangeDeclare(EXCHANGE_NAME, "direct");
+		channel.exchangeDeclare(EXCHANGE_NAME, "topic");
 		String queueName = channel.queueDeclare().getQueue();
 
 		if (argv.length < 1) {
-			// ERROR routing key로 사용할 log-level이 주어지지 않음.
-			System.err.println("Usage: ReceiveLogsDirect [info] [warning] [error]");
+			System.err.println("Usage: ReceiveLogsTopic [binding_key]...");
 			System.exit(1);
 		}
 
-		// 주어지는 log-level들을 queue에 바인딩 키로 넣어줌.
-		for (String severity : argv) {
-			channel.queueBind(queueName, EXCHANGE_NAME, severity);
+		// RoutingKey로 사용할 토픽을 Exchange에 붙여서 구독중인 토픽에 대한 메시지 수신하게 함.
+		// 조건에 맞지 않는 메시지는 자동 삭제
+		for (String bindingKey : argv) {
+			channel.queueBind(queueName, EXCHANGE_NAME, bindingKey);
 		}
 
 		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
