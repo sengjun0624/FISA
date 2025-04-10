@@ -1,4 +1,4 @@
-package dev.petclinie.model;
+package dev.petclinic.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

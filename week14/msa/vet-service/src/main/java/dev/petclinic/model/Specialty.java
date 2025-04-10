@@ -1,4 +1,4 @@
-package dev.petclinie.model;
+package dev.petclinic.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -3,7 +3,7 @@ spring:
     name: vet-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/petclinic_vet
+    url: ${URL}
     username: ${USER}
     password: ${PW}
     driver-class-name: com.mysql.cj.jdbc.Driver
