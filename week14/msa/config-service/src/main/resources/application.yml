@@ -1,5 +1,7 @@
 server:
   port: 8888
+
+
 spring:
   application:
     name: config-service
@@ -7,4 +9,4 @@ spring:
     config:
       server:
         git: # ????? ???? ??? Gitdmf ghkfdyd
-          uri:
+          uri: 'https://github.com/sengjun0624/config-repository.git'
