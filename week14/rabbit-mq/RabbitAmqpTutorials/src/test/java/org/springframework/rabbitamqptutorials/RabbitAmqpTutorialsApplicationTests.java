@@ -1,10 +1,10 @@
-package dev.apmq.springapmq;
+package org.springframework.rabbitamqptutorials;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringApmqApplicationTests {
+class RabbitAmqpTutorialsApplicationTests {
 
 	@Test
 	void contextLoads() {
