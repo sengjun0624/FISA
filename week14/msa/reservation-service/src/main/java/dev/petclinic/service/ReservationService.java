@@ -4,6 +4,7 @@ import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
 
 import dev.petclinic.dto.ReservationAcceptedMessage;
+import dev.petclinic.dto.ReservationDispatchedMessage;
 import dev.petclinic.dto.ReservationRequest;
 import dev.petclinic.dto.VetAvailability;
 import dev.petclinic.model.Reservation;
@@ -64,5 +65,23 @@ public class ReservationService {
 			= streamBridge.send("acceptReservation-out-0", reservationAcceptedMessage);
 		log.info("적재 결과, {}", result);
 
+	}
+
+	public Flux<Reservation> consumeReservationDispatchedEvent(Flux<ReservationDispatchedMessage> flux) {
+		return flux.flatMap(message ->
+				reservationRepository.findById(message.reservationId()))
+			.map(this::buildDispatchedReservation)
+			.flatMap(reservationRepository::save);
+	}
+
+	private Reservation buildDispatchedReservation(Reservation existingReservation) {
+		return new Reservation(
+			existingReservation.id(),
+			existingReservation.ownerId(),
+			existingReservation.petId(),
+			existingReservation.vetId(),
+			existingReservation.reservationDate(),
+			ReservationStatus.CONFIRMED
+		);
 	}
 }

@@ -8,5 +8,5 @@ spring:
   cloud:
     config:
       server:
-        git: # ????? ???? ??? Gitdmf ghkfdyd
+        git:
           uri: 'https://github.com/sengjun0624/config-repository.git'

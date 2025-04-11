@@ -1,8 +1,9 @@
 spring:
   application:
-    name: vet-service
+    name: schedule-service
   config:
     import: "optional:configserver:"
     cloud:
       config:
         uri: http://localhost:8888
+
