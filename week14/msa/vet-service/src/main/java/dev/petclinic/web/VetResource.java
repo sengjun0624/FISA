@@ -1,9 +1,11 @@
 package dev.petclinic.web;
 
 import dev.petclinic.model.Vet;
+import dev.petclinic.model.VetAvailability;
 import dev.petclinic.service.VetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +28,10 @@ public class VetResource {
 		return vetService.getVetList();
 	}
 
+	// 수의사 ID로 해당 수의사의 진료 가능한 요일 조회
+	@GetMapping("/{vetId}")
+	public VetAvailability getVetById(@PathVariable Long vetId) throws InterruptedException {
 
+		return vetService.getVetById(vetId);
+	}
 }
